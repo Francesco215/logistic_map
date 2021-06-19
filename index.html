@@ -6,7 +6,7 @@
   <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
-
+<script src="library.js"></script>
 <script type="text/front-matter">
   title: "The logistic map"
   description: "inserire sottotitolo"
@@ -27,7 +27,25 @@
         where \(0\le r \le 4 \) is a parameter
     </p>
     <div style="position: relative; height:500px; left:-50px;">
-        <svg width="800" height="400">ooooooooooo</svg>
+        <div style="position: relative; height:400px" id="curve0"></div>
+        <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
+            <input type="range" min="0" max="4" step="0.05" value="3.4" id="r0">
+            <div id="displayR0" ><eqdin>\(r=3.4\) </eqdin></div>
+        </div>
+        <script src="logistic_def.js"></script> 
+
+
+    </div>    
+
+    <p>
+        It was first theorized as a way to model population growth in a system with finite resouces.
+        We can imagine \(x_n\) as a precentage of the theoretical maximum of animals, so
+        the term \(rx_n\) represents the growth rate if the resouces are infinite, and the term \((1-x_n\))
+        makes the population shrink as it approaches 1.
+    </p>
+    
+    <div style="position: relative; height:500px; left:-50px;">
+        <div style="position: relative; height:400px" id="zigzag"></div>
         <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
             <input type="range" min="0" max="4" step="0.05" value="3.4" id="r">
             <div id="displayR" ><eqdin>\(r=3.4\) </eqdin></div>
@@ -36,6 +54,7 @@
             <input type="range" min="0" max="1" step="0.01" value="0.3" id="x_0">
             <div id="displayX_0"><eqdin>\(x_0 = 0.3\)</eqdin></div>
         </div>
+        <script src='zigzag.js'></script>
     </div>
     <p>
 
@@ -60,4 +79,3 @@
   }
 </script>
 
-<script src='zigzag.js'></script>

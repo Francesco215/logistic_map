@@ -4,21 +4,10 @@ var margin = {top: 10, right: 30, bottom: 30, left: 60},
     height = 400 - margin.top - margin.bottom;
 
 
-//Create the data
-const logistic = (x,r) => r*x*(1-x);
-
-var zigzag = (x,r,len) =>{
-    var data=[]
-    for (let i=0;i<len;i++){
-        data.push([i*width/len,(1-x)*height]);
-        x=logistic(x,r);
-    }
-    return  data
-}
 var sequence = (x,r,len) =>{
     var data=[]
     for (let i=0;i<len;i++){
-        data.push({index:i,y:x});
+        data.push({x:i,y:x});
         x=logistic(x,r);
     }
     return  data
@@ -42,7 +31,7 @@ data=sequence(x_0,r,len);
 
 
 // append the svg object to the body of the page
-var svg = d3.select("svg")
+var svg = d3.select("#zigzag")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -60,13 +49,6 @@ var x = d3.scaleLinear()
 var y = d3.scaleLinear()
     .domain([0,1])
     .range([height, 0]);
-
-
-
-const line=d3.line()
-    .x(function(d){return x(d.index);})
-    .y(function(d){return y(d.y);})
-
 
 
 
