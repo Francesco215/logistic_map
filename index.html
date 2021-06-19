@@ -2,6 +2,10 @@
 <meta charset="utf-8">
 <script src="https://distill.pub/template.v1.js"></script>
 <script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
 
 <script type="text/front-matter">
   title: "The logistic map"
@@ -18,18 +22,27 @@
     <h2>Here we explore the weird properties of the logistic map</h2>
     <dt-byline></dt-byline>
     <h2><a class="marker" href="#section-1" id="section-1">1</a> The definition</h2>
-    <p>This is the definition of the logistic map <dt-cite key="bobby"></dt-cite>.
-        <dt-math block>
-            f(w) = \tfrac{1}{2}w^TAw - b^Tw
-        </dt-math>
+    <p>The definition of the logistic map is very simple, yet il leads to very complex and intresting behavior  <dt-cite key="logistic"></dt-cite>.
+        \[x_{n+1} = rx_n(1-x_n)\] 
+        where \(0\le r \le 4 \) is a parameter
     </p>
-    <p>
+    <div style="position: relative; height:500px; left:-50px;">
         <svg width="800" height="400">ooooooooooo</svg>
-        <div>
-            <input type="range" min="0" max="4" step="0.05" id="r">
-            <p id="displayR"></p>
+        <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
+            <input type="range" min="0" max="4" step="0.05" value="3.4" id="r">
+            <div id="displayR" ><eqdin>\(r=3.4\) </eqdin></div>
         </div>
+        <div style="position:absolute; width:300px; height: 50px; left:400px; top: 430px;">
+            <input type="range" min="0" max="1" step="0.01" value="0.3" id="x_0">
+            <div id="displayX_0"><eqdin>\(x_0 = 0.3\)</eqdin></div>
+        </div>
+    </div>
+    <p>
+
+        ecco si cioè
     </p>
+
+    
 
   <h2><a class="marker" href="#section-2" id="section-2">2</a> The Cobweb</h2>
 </dt-article>
@@ -38,12 +51,12 @@
 </dt-appendix>
 
 <script type="text/bibliography">
-  @article{bobby,
-    title={Bobby Fischer Enjoys Breaking Chess Players' Egos},
-    author={Bobby Fisher},
-    journal={Dick Cravett Show},
-    year={1971},
-    url={https://youtu.be/boyYKCr3T8w?t=394}
+  @article{logistic,
+    title={Simple mathematical models with very complicated dynamics},
+    author={Robert M. May},
+    journal={Nature},
+    year={1976},
+    url={https://www.nature.com/articles/261459a0}
   }
 </script>
 

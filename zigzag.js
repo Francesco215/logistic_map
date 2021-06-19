@@ -10,7 +10,7 @@ const logistic = (x,r) => r*x*(1-x);
 var zigzag = (x,r,len) =>{
     var data=[]
     for (let i=0;i<len;i++){
-        data.push([i*width/len,x*height]);
+        data.push([i*width/len,(1-x)*height]);
         x=logistic(x,r);
     }
     return  data
@@ -18,16 +18,28 @@ var zigzag = (x,r,len) =>{
 var sequence = (x,r,len) =>{
     var data=[]
     for (let i=0;i<len;i++){
-        data.push([i,x]);
+        data.push({index:i,y:x});
         x=logistic(x,r);
     }
     return  data
 }
 
+// parte dello slider
+var sliderR = document.getElementById("r");
+var sliderX_0 = document.getElementById("x_0");
+var displayR = document.getElementById("displayR");
+var displayX_0 = document.getElementById("displayX_0");
 
 var len=70;
-data=zigzag(0.3,1,len);
-console.log(data)
+var x_0=sliderX_0.value;
+var r=sliderR.value;
+displayR.innerHTML="\\(r = "+r+"\\)";
+displayX_0.innerHTML='\\(x_0 = '+x_0+'\\)';
+
+
+data=sequence(x_0,r,len);
+
+
 
 // append the svg object to the body of the page
 var svg = d3.select("svg")
@@ -51,35 +63,40 @@ var y = d3.scaleLinear()
 
 
 
-//var line=d3.line().x(d => d.index).y(d =>)
+const line=d3.line()
+    .x(function(d){return x(d.index);})
+    .y(function(d){return y(d.y);})
+
+
 
 
 // Add the line
 svg.append("svg:path")
     .data([data])
-    .attr("d",d3.line())
+    .attr("d",line)
     .style("fill",'none')
-    .style("stroke",'red')
+    .style("stroke",'#ff7300')
     .style("stroke-width","3px");
 
 
-
-
-// parte dello slider
-
-
-var sliderR = document.getElementById("r");
-var displayR = document.getElementById("displayR");
-var r;
-
-sliderR.addEventListener("mousemove", function(){
+const syncR = function(){
     r = sliderR.value;
-    displayR.innerHTML="r = "+r;
-    data=zigzag(0.3,r,len);
-    console.log(data[-1])
-    svg.selectAll("path").data([data]).attr("d", d3.line());
-})
+    displayR.innerHTML="\\(r = "+r+"\\)";
+    data=sequence(x_0,r,len);
+    MathJax.typesetPromise([displayR]);//slow
+    svg.selectAll("path").data([data]).attr("d", line);
+    }
 
+const syncX_0 = function(){
+    x_0 = sliderX_0.value;
+    displayX_0.innerHTML='\\(x_0 = '+x_0+'\\)';
+    data=sequence(x_0,r,len);
+    MathJax.typesetPromise([displayX_0]);//slow
+    svg.selectAll("path").data([data]).attr("d", line);
+    }
+
+sliderR.addEventListener("mousemove", syncR)
+sliderX_0.addEventListener("mousemove",syncX_0 )
 
 //non so che fa    
 svg.append("g")
