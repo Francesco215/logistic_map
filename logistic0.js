@@ -22,11 +22,10 @@ data0=curve(r0);
 
 // append the svg object to the body of the page
 var g0 = d3.select("#curve0")
-    .append("svg")
+    .append("g")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .attr("transform",
-    "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
 
 // Add X axis --> it is a date format
@@ -66,7 +65,6 @@ sliderR0.addEventListener("mousemove", syncR0)
 
 
 
-//non so che fa    
 g0.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x0));

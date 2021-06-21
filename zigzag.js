@@ -79,7 +79,6 @@ const syncX_0 = function(){
 sliderR.addEventListener("mousemove", syncR)
 sliderX_0.addEventListener("mousemove",syncX_0 )
 
-//non so che fa    
 g1.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x));
