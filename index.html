@@ -16,18 +16,26 @@
   - University of Pisa: http://unipi.it
 </script>
 
-
+<dt-banner style="display: none;"></dt-banner>
 <dt-article>
   <h1> The Logistic Map</h1>
   <h2>Here we explore the weird properties of the logistic map</h2>
   <dt-byline></dt-byline>
   <h2><a class="marker" href="#section-1" id="section-1">1</a> The definition</h2>
-  <p>The definition of the logistic map is very simple, yet il leads to very complex and intresting behavior  <dt-cite key="logistic"></dt-cite>.
-      \[x_{n+1} = rx_n(1-x_n)\] 
-      where \(0\le r \le 4 \) is a parameter
+  <p>
+    The definition of the logistic map is very simple, yet il leads to very complex and intresting behavior  <dt-cite key="logistic"></dt-cite>.
+    \[x_{n+1} = rx_n(1-x_n)\] 
+    where \(0\le r \le 4 \) is a parameter
+      <dt-fn>
+        This is because the maximum of the logistic function is \(r/4\),
+        and if we want to keep \(x_{n}\in [0,1]\) we must keep \(r \in [0,4]\) 
+      </dt-fn>
+
   </p>
   <div style="position: relative; height:500px; left:-50px;">
     <svg id="curve0" style="width:700px; height:400px;"></svg>
+    <div style="position:absolute; width:300px; height: 50px; left:670px; top: 390px;">\(x_n\)</div> <!--xlabel-->
+    <div style="position:absolute; width:300px; height: 50px; left:70px; top: 10px;">\(x_{n+1}\)</div> <!--xlabel-->
     <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
       <input type="range" min="0" max="4" step="0.05" value="3.4" id="r0">
       <div id="displayR0" ><eqdin>\(r=3.4\) </eqdin></div>
@@ -50,25 +58,57 @@
       as we change \(r\) and \(x_0\)
     </p>
     <div style="position: relative; height:500px; left:-50px;">
-        <div style="position: relative; height:400px" id="zigzag"></div>
-        <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
-            <input type="range" min="0" max="4" step="0.05" value="3.4" id="r">
-            <div id="displayR" ><eqdin>\(r=3.4\) </eqdin></div>
-        </div>
-        <div style="position:absolute; width:300px; height: 50px; left:400px; top: 430px;">
-            <input type="range" min="0" max="1" step="0.01" value="0.3" id="x_0">
-            <div id="displayX_0"><eqdin>\(x_0 = 0.3\)</eqdin></div>
-        </div>
-        <script src='zigzag.js'></script>
+      <div style="position: relative; height:400px" id="zigzag"></div>
+      <div style="position:absolute; width:300px; height: 50px; left:670px; top: 390px;">\(n\)</div> <!--xlabel-->
+      <div style="position:absolute; width:300px; height: 50px; left:70px; top: 10px;">\(x\)</div> <!--xlabel-->
+      <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
+        <input type="range" min="0" max="4" step="0.05" value="3.4" id="r">
+        <div id="displayR" ><eqdin>\(r=3.4\) </eqdin></div>
+    </div>
+    <div style="position:absolute; width:300px; height: 50px; left:400px; top: 430px;">
+        <input type="range" min="0" max="1" step="0.01" value="0.3" id="x_0">
+        <div id="displayX_0"><eqdin>\(x_0 = 0.3\)</eqdin></div>
+      </div>
+      <script src='zigzag.js'></script>
     </div>
     <p>
-
-        ecco si cioè
-    </p>
-
+      Just from playing with the graph can be understood that \(x_0\) has very little effect on the long-term
+      behavior of the system, meanwhile changing \(r\) can make the succession evolve in very different ways.
+      In particular:
+      <ul>
+        <li>For \(r\le 1\quad x_n\to 0\). This can be explained by the fact that \(r< 1\) represents
+        a declining population in model where \(x_{n+1}=rx_n\), and the factor \(1-x_n\) is always less than \(1\)</li>
+        <li>For \(1&lt r &lt c_1 \) where \(c_1\) is some constant we don't know anything about yet 
+          the map converges to a single value</li>
+        <li>
+          For \(c_1&lt r &lt c_2 \) the tends to oscillate between two values
+        </li>
+        <li>
+          For \(c_2&lt r &lt c_3 \) the tends to oscillate between four values
+        </li>
+        <li>
+          For \(c_4&lt r &lt c_5 \) the tends to oscillate between eight values
+        </li>
+        <li>
+          After that it becomes harder and harder to see if the periods keep doubling because the constants \(c_n\)
+          keep getting closer togheder, so it seems that they converge to some constant \(c_\infty\)
+        </li>
+        <li>
+          After that, the way the system behaves is chaotic, with a "island" of stability 3
+        </li>
+      </ul>
+      </p>
+      <p>
+        Unfortunately, just by watching the succession \(x_n\) this is all we can tell, in order to have
+        a deeper understanding of the phenomenon we must use another visual method.
+      </p>
     
 
   <h2><a class="marker" href="#section-3" id="section-3">3</a> The Cobweb</h2>
+    <p>
+      we alora lì
+
+    </p>
 </dt-article>
 
 <dt-appendix>

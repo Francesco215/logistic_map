@@ -65,6 +65,7 @@ sliderR0.addEventListener("mousemove", syncR0)
 
 
 g0.append("g")
+    .attr("id","xaxis0")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x0));
 
