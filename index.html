@@ -18,32 +18,37 @@
 
 
 <dt-article>
-    <h1> The Logistic Map</h1>
-    <h2>Here we explore the weird properties of the logistic map</h2>
-    <dt-byline></dt-byline>
-    <h2><a class="marker" href="#section-1" id="section-1">1</a> The definition</h2>
-    <p>The definition of the logistic map is very simple, yet il leads to very complex and intresting behavior  <dt-cite key="logistic"></dt-cite>.
-        \[x_{n+1} = rx_n(1-x_n)\] 
-        where \(0\le r \le 4 \) is a parameter
-    </p>
-    <div style="position: relative; height:500px; left:-50px;">
-        <svg id="curve0" style="width:700px; height:400px;"></svg>
-        <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
-            <input type="range" min="0" max="4" step="0.05" value="3.4" id="r0">
-            <div id="displayR0" ><eqdin>\(r=3.4\) </eqdin></div>
-        </div>
-        <script src="logistic0.js"></script> 
+  <h1> The Logistic Map</h1>
+  <h2>Here we explore the weird properties of the logistic map</h2>
+  <dt-byline></dt-byline>
+  <h2><a class="marker" href="#section-1" id="section-1">1</a> The definition</h2>
+  <p>The definition of the logistic map is very simple, yet il leads to very complex and intresting behavior  <dt-cite key="logistic"></dt-cite>.
+      \[x_{n+1} = rx_n(1-x_n)\] 
+      where \(0\le r \le 4 \) is a parameter
+  </p>
+  <div style="position: relative; height:500px; left:-50px;">
+    <svg id="curve0" style="width:700px; height:400px;"></svg>
+    <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
+      <input type="range" min="0" max="4" step="0.05" value="3.4" id="r0">
+      <div id="displayR0" ><eqdin>\(r=3.4\) </eqdin></div>
+    </div>
+    <script src="logistic0.js"></script> 
 
 
-    </div>    
+  </div>    
 
+  <p>
+    It was first theorized as a way to model population growth in a system with finite resouces.
+    We can imagine \(x_n\) as a precentage of the theoretical maximum of animals, so
+    the term \(rx_n\) represents the growth rate if the resouces are infinite, and the term \((1-x_n\))
+    makes the population shrink as it approaches 1.
+  </p>
+
+    <h2><a class="marker" href="#section-2" id="section-2">2</a> Dynamics</h2>
     <p>
-        It was first theorized as a way to model population growth in a system with finite resouces.
-        We can imagine \(x_n\) as a precentage of the theoretical maximum of animals, so
-        the term \(rx_n\) represents the growth rate if the resouces are infinite, and the term \((1-x_n\))
-        makes the population shrink as it approaches 1.
+      Now let's plot a succession \(x_n\) with a starting point \(x_0\) and examine what happens
+      as we change \(r\) and \(x_0\)
     </p>
-
     <div style="position: relative; height:500px; left:-50px;">
         <div style="position: relative; height:400px" id="zigzag"></div>
         <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
@@ -63,7 +68,7 @@
 
     
 
-  <h2><a class="marker" href="#section-2" id="section-2">2</a> The Cobweb</h2>
+  <h2><a class="marker" href="#section-3" id="section-3">3</a> The Cobweb</h2>
 </dt-article>
 
 <dt-appendix>

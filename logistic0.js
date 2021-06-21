@@ -2,8 +2,7 @@ const curve = (r0) =>{
     var out=[];
     var detail=300;
     for (let i=0;i<=detail;i++){
-        x=i/detail;
-        out.push({x:i/detail,y:logistic(x,r0)});
+        out.push({x:i/detail,y:logistic(i/detail,r0)});
     }
     return  out
 }

@@ -29,6 +29,7 @@ var g1 = d3.select("#zigzag")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .append("g")
     .attr("transform",
     "translate(" + margin.left + "," + margin.top + ")");
 
@@ -51,7 +52,7 @@ const line=d3.line()
 
 
 // Add the line
-g1.append("svg:path")
+g1.append("path")
     .data([data])
     .attr("id","zigzag")
     .attr("d",line)
