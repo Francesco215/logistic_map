@@ -1,17 +1,9 @@
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 700 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-
-
-//Create the data
-
-
-const curve = (r,detail=300) =>{
-    var out=[]
+const curve = (r0) =>{
+    var out=[];
+    var detail=300;
     for (let i=0;i<=detail;i++){
         x=i/detail;
-        out.push({x:i/detail,y:logistic(x,r)});
+        out.push({x:i/detail,y:logistic(x,r0)});
     }
     return  out
 }
@@ -20,61 +12,65 @@ const curve = (r,detail=300) =>{
 var sliderR0 = document.getElementById("r0");
 var displayR0 = document.getElementById("displayR0");
 
-var r=sliderR0.value;
-displayR0.innerHTML="\\(r = "+r+"\\)";
+var len=70;
+var r0=sliderR0.value;
+displayR0.innerHTML="\\(r = "+r0+"\\)";
 
-
-data=curve(r);
+data0=curve(r0);
 
 
 
 // append the svg object to the body of the page
-var svg = d3.select("#curve0")
+var g0 = d3.select("#curve0")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .append("g")
     .attr("transform",
     "translate(" + margin.left + "," + margin.top + ")");
 
 
 // Add X axis --> it is a date format
-var x = d3.scaleLinear()
+var x0 = d3.scaleLinear()
     .domain([0,1])
     .range([ 0, width ]);
 
     // Add Y axis
-var y = d3.scaleLinear()
+var y0 = d3.scaleLinear()
     .domain([0,1])
     .range([height, 0]);
 
-
+const line0=d3.line()
+    .x(function(d){return x0(d.x);})
+    .y(function(d){return y0(d.y);})
 
 
 // Add the line
-svg.append("path")
-    .data([data])
-    .attr("d",line)
+g0.append("path")
+    .data([data0])
+    .attr("d",line0)
+    .attr("id","curve")
     .style("fill",'none')
     .style("stroke",'#ff7300')
     .style("stroke-width","3px");
 
 
-
 const syncR0 = function(){
-    r = sliderR0.value;
-    displayR0.innerHTML="\\(r = "+r+"\\)";
-    data=curve(r);
+    r0 = sliderR0.value;
+    displayR0.innerHTML="\\(r = "+r0+"\\)";
+    data0=curve(r0);
     MathJax.typesetPromise([displayR0]);//slow
-    //svg.selectAll("path").data([data]).attr("d", line); //QUA ESCE UN ERROREEE
-    }
+    g0.select("#curve").data([data0]).attr("d", line0);
+}
+
 sliderR0.addEventListener("mousemove", syncR0)
 
 
-//non so che fa    
-svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x));
 
-svg.append("g")
-    .call(d3.axisLeft(y));
+//non so che fa    
+g0.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x0));
+
+g0.append("g")
+    .attr("transform", "translate(0,0)")
+    .call(d3.axisLeft(y0));

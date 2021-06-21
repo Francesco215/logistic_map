@@ -1,9 +1,7 @@
 const logistic = (x,r) => r*x*(1-x);
 
-
-
-const line=d3.line()
-    .x(function(d){return x(d.x);})
-    .y(function(d){return y(d.y);})
-
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 700 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 

@@ -1,9 +1,3 @@
-// set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
-    width = 700 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-
-
 var sequence = (x,r,len) =>{
     var data=[]
     for (let i=0;i<len;i++){
@@ -31,11 +25,10 @@ data=sequence(x_0,r,len);
 
 
 // append the svg object to the body of the page
-var svg = d3.select("#zigzag")
+var g1 = d3.select("#zigzag")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .append("g")
     .attr("transform",
     "translate(" + margin.left + "," + margin.top + ")");
 
@@ -52,9 +45,15 @@ var y = d3.scaleLinear()
 
 
 
+const line=d3.line()
+    .x(function(d){return x(d.x);})
+    .y(function(d){return y(d.y);})
+
+
 // Add the line
-svg.append("svg:path")
+g1.append("svg:path")
     .data([data])
+    .attr("id","zigzag")
     .attr("d",line)
     .style("fill",'none')
     .style("stroke",'#ff7300')
@@ -66,7 +65,7 @@ const syncR = function(){
     displayR.innerHTML="\\(r = "+r+"\\)";
     data=sequence(x_0,r,len);
     MathJax.typesetPromise([displayR]);//slow
-    svg.selectAll("path").data([data]).attr("d", line);
+    g1.select("#zigzag").data([data]).attr("d", line);
     }
 
 const syncX_0 = function(){
@@ -74,16 +73,16 @@ const syncX_0 = function(){
     displayX_0.innerHTML='\\(x_0 = '+x_0+'\\)';
     data=sequence(x_0,r,len);
     MathJax.typesetPromise([displayX_0]);//slow
-    svg.selectAll("path").data([data]).attr("d", line);
+    g1.select("#zigzag").data([data]).attr("d", line);
     }
 
 sliderR.addEventListener("mousemove", syncR)
 sliderX_0.addEventListener("mousemove",syncX_0 )
 
 //non so che fa    
-svg.append("g")
+g1.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x));
 
-svg.append("g")
+g1.append("g")
     .call(d3.axisLeft(y));
