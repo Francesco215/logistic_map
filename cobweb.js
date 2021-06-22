@@ -9,7 +9,7 @@ var displayL2 = document.getElementById("displayL_2");
 var len=70;
 var r2=sliderR2.value;
 var x_2=sliderX2.value;
-var l2=sliderL2.value;
+var l2=Math.pow(10,sliderL2.value);
 displayR2.innerHTML="\\(r = "+r2+"\\)";
 displayX2.innerHTML="\\(x_0 = "+x_2+"\\)";
 displayL2.innerHTML="\\(l = "+l2+"\\)";
@@ -73,6 +73,7 @@ g2.append("path")
     .style("stroke-width","3px");
 
 
+
 const syncR2 = function(){
     r2 = sliderR2.value;
     displayR2.innerHTML="\\(r = "+r2+"\\)";
@@ -90,8 +91,8 @@ const syncX2 = function(){
     g2.select("#web").data([web]).attr("d", line2);
 }
 const syncL2 = function(){
-    l2 = sliderL2.value;
-    displayL2.innerHTML="\\(l = "+l2+"\\)";
+    l2 =Math.pow(10 ,sliderL2.value);
+    displayL2.innerHTML="\\(l = "+l2.toPrecision(3)+"\\)";
     web=cobweb(x_2,r2,l2);
     MathJax.typesetPromise([displayL2]);//slow
     g2.select("#web").data([web]).attr("d", line2);
