@@ -54,7 +54,6 @@ g0.append("path")
 const syncR0 = function(){
     r = sliderR0.value;
     updateR(r);
-    g0.select("#curve").data([curve(r)]).attr("d", line0);
 }
 
 sliderR0.addEventListener("mousemove", syncR0)

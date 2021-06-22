@@ -7,15 +7,14 @@ var displayX2 = document.getElementById("displayX_2");
 var displayL2 = document.getElementById("displayL_2");
 
 var len=70;
-var r2=sliderR2.value;
 var x_2=sliderX2.value;
 var l2=Math.pow(10,sliderL2.value);
-displayR2.innerHTML="\\(r = "+r2+"\\)";
+displayR2.innerHTML="\\(r = "+r+"\\)";
 displayX2.innerHTML="\\(x_0 = "+x_2+"\\)";
 displayL2.innerHTML="\\(l = "+l2.toPrecision(3)+"\\)";
 
-data2=curve(r2);
-web=cobweb(x_2,r2,l2);
+data2=curve(r);
+web=cobweb(x_2,r,l2);
 
 // set the dimensions and margins of the graph
 var marginCobweb = {top: 10, right: 30, bottom: 30, left: 60},
@@ -54,14 +53,6 @@ g2.append("line")
     .style("stroke",'#79b0e0')
     .style("stroke-width","2px");
 
-// Add the curve
-g2.append("path")
-    .data([web])
-    .attr("d",line2)
-    .attr("id","web")
-    .style("fill",'none')
-    .style("stroke",'#898989')
-    .style("stroke-width","1px");
 
 // Add the curve
 g2.append("path")
@@ -72,28 +63,30 @@ g2.append("path")
     .style("stroke",'#ff7300')
     .style("stroke-width","3px");
 
-
+// Add the cobweb
+g2.append("path")
+    .data([web])
+    .attr("d",line2)
+    .attr("id","web")
+    .style("fill",'none')
+    .style("stroke",'#898989')
+    .style("stroke-width","1px");
 
 const syncR2 = function(){
-    r2 = sliderR2.value;
-    displayR2.innerHTML="\\(r = "+r2+"\\)";
-    data2=curve(r2);
-    web=cobweb(x_2,r2,l2);
-    MathJax.typesetPromise([displayR2]);//slow
-    g2.select("#curve_2").data([data2]).attr("d", line2);
-    g2.select("#web").data([web]).attr("d", line2);
+    r = sliderR2.value;
+    updateR(r);
 }
 const syncX2 = function(){
     x_2 = sliderX2.value;
     displayX2.innerHTML="\\(x_0 = "+x_2+"\\)";
-    web=cobweb(x_2,r2,l2);
+    web=cobweb(x_2,r,l2);
     MathJax.typesetPromise([displayX2]);//slow
     g2.select("#web").data([web]).attr("d", line2);
 }
 const syncL2 = function(){
     l2 =Math.pow(10 ,sliderL2.value);
     displayL2.innerHTML="\\(l = "+l2.toPrecision(3)+"\\)";
-    web=cobweb(x_2,r2,l2);
+    web=cobweb(x_2,r,l2);
     MathJax.typesetPromise([displayL2]);//slow
     g2.select("#web").data([web]).attr("d", line2);
 }

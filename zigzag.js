@@ -62,10 +62,7 @@ g1.append("svg:path")
 
 const syncR = function(){
     r = sliderR1.value;
-    displayR1.innerHTML="\\(r = "+r+"\\)";
-    data=sequence(x_0,r,len);
-    MathJax.typesetPromise([displayR1]);//slow
-    g1.select("#zigzag").data([data]).attr("d", line);
+    updateR(r);
     }
 
 const syncX_0 = function(){

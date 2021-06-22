@@ -15,6 +15,14 @@ const updateR = (r) =>{
     sliderR0.value=r;
     sliderR1.value=r;
     sliderR2.value=r;
+    data0=curve(r);
+    g0.select("#curve").data([data0]).attr("d", line0);
+    g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
+    data2=curve(r);
+    web=cobweb(x_2,r,l2);
+    g2.select("#curve_2").data([data2]).attr("d", line2);
+    g2.select("#web").data([web]).attr("d", line2);
+
 
 }
 
