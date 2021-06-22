@@ -12,7 +12,7 @@ var x_2=sliderX2.value;
 var l2=Math.pow(10,sliderL2.value);
 displayR2.innerHTML="\\(r = "+r2+"\\)";
 displayX2.innerHTML="\\(x_0 = "+x_2+"\\)";
-displayL2.innerHTML="\\(l = "+l2+"\\)";
+displayL2.innerHTML="\\(l = "+l2.toPrecision(3)+"\\)";
 
 data2=curve(r2);
 web=cobweb(x_2,r2,l2);

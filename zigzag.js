@@ -8,15 +8,14 @@ var sequence = (x,r,len) =>{
 }
 
 // parte dello slider
-var sliderR = document.getElementById("r");
+var sliderR1 = document.getElementById("r1");
 var sliderX_0 = document.getElementById("x_0");
-var displayR = document.getElementById("displayR");
+var displayR1 = document.getElementById("displayR1");
 var displayX_0 = document.getElementById("displayX_0");
 
 var len=70;
 var x_0=sliderX_0.value;
-var r=sliderR.value;
-displayR.innerHTML="\\(r = "+r+"\\)";
+displayR1.innerHTML="\\(r = "+r+"\\)";
 displayX_0.innerHTML='\\(x_0 = '+x_0+'\\)';
 
 
@@ -62,22 +61,21 @@ g1.append("svg:path")
 
 
 const syncR = function(){
-    r = sliderR.value;
-    displayR.innerHTML="\\(r = "+r+"\\)";
+    r = sliderR1.value;
+    displayR1.innerHTML="\\(r = "+r+"\\)";
     data=sequence(x_0,r,len);
-    MathJax.typesetPromise([displayR]);//slow
+    MathJax.typesetPromise([displayR1]);//slow
     g1.select("#zigzag").data([data]).attr("d", line);
     }
 
 const syncX_0 = function(){
     x_0 = sliderX_0.value;
     displayX_0.innerHTML='\\(x_0 = '+x_0+'\\)';
-    data=sequence(x_0,r,len);
     MathJax.typesetPromise([displayX_0]);//slow
-    g1.select("#zigzag").data([data]).attr("d", line);
+    g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
     }
 
-sliderR.addEventListener("mousemove", syncR)
+sliderR1.addEventListener("mousemove", syncR)
 sliderX_0.addEventListener("mousemove",syncX_0 )
 
 g1.append("g")

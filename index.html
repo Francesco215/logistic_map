@@ -60,8 +60,8 @@
       <div style="position:absolute; width:300px; height: 50px; left:670px; top: 390px;">\(n\)</div> <!--xlabel-->
       <div style="position:absolute; width:300px; height: 50px; left:70px; top: 10px;">\(x\)</div> <!--xlabel-->
       <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
-        <input type="range" min="0" max="4" step="0.05" value="3.4" id="r">
-        <div id="displayR" ><eqdin>\(r=3.4\) </eqdin></div>
+        <input type="range" min="0" max="4" step="0.05" value="3.4" id="r1">
+        <div id="displayR1" ><eqdin>\(r=3.4\) </eqdin></div>
       </div>
       <div style="position:absolute; width:300px; height: 50px; left:400px; top: 430px;">
         <input type="range" min="0" max="1" step="0.01" value="0.3" id="x_0">
@@ -103,7 +103,26 @@
     
 
   <h2><a class="marker" href="#section-3" id="section-3">3</a> The Cobweb</h2>
-    <p>we alora lì</p>
+    <p>
+      Given \(x_{n+1}=f(x_n)\) the Cobweb works as follows: 
+      <ul>
+        <li>
+          Start with an initial condition \(x_0\) draw a vertical line until it intersect the graph \(f\),
+          that height is by definition \(x_1\)
+        </li>
+        <li>
+          Draw a horizontal line until it intersects the bisectrix \(x_{n+1}=x_n\)
+        </li>
+        <li>
+          Ok, now move again vertically towards the curve of \(f\), since the \(x\) component is equal to \(x_1\),
+          the line now intersects the line at \(y=x_2\)
+        </li>
+        <li>
+          Keep going
+        </li>
+      </ul>
+
+    </p>
     
     
     <div style="position: relative; height:800px; left:-50px;">
@@ -130,9 +149,47 @@
       <script src='cobweb.js'></script>
     </div> 
     <p>
-      nutella
-
+      By playing with the graph you can clearly see that for low \(r\) the equilibrium points are
+      the ones in the intersection between \(f(x)\) and the bisectrix. This makes sense because if \(f(x^*)=x^*\)
+      Where\(x^*\) is the intersection point the succession stays constant.
+      But why for some \(r\) doesn't want to stay on \(x^*\)?.
     </p>
+    <p>
+      This is because it isn't a stable equilibrium point. Just like in physics, to see if a equilibrium point
+      is stable or not you just have to put your system just slightly off \(x^*\) and see what it does, if in the next
+      iteration it gets further from the equilibrium point that it's unstable, otherwise it's stable, written in mathematical
+      tems...
+      $$
+        \left\{ 
+          \begin{array}{c}
+          \mathrm{if}\quad \Big|\frac{f(x^*+\epsilon)-x^*}{\epsilon}\Big|>1\quad \mathrm{is\: unstable}\\ 
+          \mathrm{if}\quad \Big|\frac{f(x^*+\epsilon)-x^*}{\epsilon}\Big|&lt1\quad \mathrm{is\: stable}\\
+          \mathrm{if}\quad \Big|\frac{f(x^*+\epsilon)-x^*}{\epsilon}\Big|=1\quad \mathrm{we\: don't\: know}
+          \end{array}
+        \right. 
+      $$
+      Since \(\epsilon\) is small we can expand \(f\) around \(x^*\)
+      \[f(x^*+\epsilon)=f(x^*)+f'(x^*)\epsilon\]
+      And if we substitute this in the system above
+      <dt-fn>
+        I have written that if \(|f'(x^*)|=1\;\;\) \(x^*\) is stable because for the logistic (and for most functions) it means that
+        you are either passing throught the regime where \(x_n\to0\) to the one where \(x_n\to c\in (0,1]\),
+        but \(\lim_{\epsilon\to 0}c=0\), so \(x^*=0\) is a stable point. Or you are right on the first bifurcation,
+        so the function oscillates in between two points that get closer and closer toghether as \(\epsilon\to 0\).
+        Let me reiterate that this does not hold for all functions, but we are going to pretend that it does for
+        sake of simplicity.
+      </dt-fn>
+      $$
+        \left\{ 
+          \begin{array}{c}
+          \mathrm{if}\quad |f'(x^*)|>1 \quad\mathrm{is\: unstable}\\ 
+          \mathrm{if}\quad |f'(x^*)|\le1\quad \mathrm{is\: stable}
+          \end{array}
+        \right. 
+      $$
+    </p>
+
+    
 </dt-article>
 
 <dt-appendix>

@@ -12,10 +12,10 @@ var sliderR0 = document.getElementById("r0");
 var displayR0 = document.getElementById("displayR0");
 
 var len=70;
-var r0=sliderR0.value;
-displayR0.innerHTML="\\(r = "+r0+"\\)";
+var r=sliderR0.value;
+displayR0.innerHTML="\\(r = "+r+"\\)";
 
-data0=curve(r0);
+data0=curve(r);
 
 
 
@@ -52,11 +52,9 @@ g0.append("path")
 
 
 const syncR0 = function(){
-    r0 = sliderR0.value;
-    displayR0.innerHTML="\\(r = "+r0+"\\)";
-    data0=curve(r0);
-    MathJax.typesetPromise([displayR0]);//slow
-    g0.select("#curve").data([data0]).attr("d", line0);
+    r = sliderR0.value;
+    updateR(r);
+    g0.select("#curve").data([curve(r)]).attr("d", line0);
 }
 
 sliderR0.addEventListener("mousemove", syncR0)
