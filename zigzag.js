@@ -52,7 +52,7 @@ const line=d3.line()
 
 
 // Add the line
-g1.append("path")
+g1.append("svg:path")
     .data([data])
     .attr("id","zigzag")
     .attr("d",line)

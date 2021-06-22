@@ -41,8 +41,6 @@
       <div id="displayR0" ><eqdin>\(r=3.4\) </eqdin></div>
     </div>
     <script src="logistic0.js"></script> 
-
-
   </div>    
 
   <p>
@@ -64,8 +62,8 @@
       <div style="position:absolute; width:300px; height: 50px; left:100px; top: 430px;">
         <input type="range" min="0" max="4" step="0.05" value="3.4" id="r">
         <div id="displayR" ><eqdin>\(r=3.4\) </eqdin></div>
-    </div>
-    <div style="position:absolute; width:300px; height: 50px; left:400px; top: 430px;">
+      </div>
+      <div style="position:absolute; width:300px; height: 50px; left:400px; top: 430px;">
         <input type="range" min="0" max="1" step="0.01" value="0.3" id="x_0">
         <div id="displayX_0"><eqdin>\(x_0 = 0.3\)</eqdin></div>
       </div>
@@ -81,13 +79,13 @@
         <li>For \(1&lt r &lt c_1 \) where \(c_1\) is some constant we don't know anything about yet 
           the map converges to a single value</li>
         <li>
-          For \(c_1&lt r &lt c_2 \) the tends to oscillate between two values
+          For \(c_1&lt r &lt c_2 \) the tends to oscillate between 2 values
         </li>
         <li>
-          For \(c_2&lt r &lt c_3 \) the tends to oscillate between four values
+          For \(c_2&lt r &lt c_3 \) the tends to oscillate between 4 values
         </li>
         <li>
-          For \(c_4&lt r &lt c_5 \) the tends to oscillate between eight values
+          For \(c_3&lt r &lt c_4 \) the tends to oscillate between 8 values
         </li>
         <li>
           After that it becomes harder and harder to see if the periods keep doubling because the constants \(c_n\)
@@ -105,8 +103,34 @@
     
 
   <h2><a class="marker" href="#section-3" id="section-3">3</a> The Cobweb</h2>
+    <p>we alora lì</p>
+    
+    
+    <div style="position: relative; height:800px; left:-50px;">
+      
+      <div style="position: relative; height:640px" id="cobweb"></div>      
+      <div style="position:relative; width:300px; height: 50px; left:670px; top: -10px;">\(x_n\)</div> <!--xlabel-->
+      <div style="position:absolute; width:300px; height: 50px; left:70px; top: 0px;">\(x_{n+1}\)</div> <!--xlabel-->
+      
+      <div style="position:relative; width:800px; height: 50px; left:75px; top: -10px;">      
+        <div style="position:absolute; width:300px; height: 50px; left:0px;">
+          <input type="range" min="0" max="4" step="0.01" value="3.4" id="r_2">
+          <div id="displayR_2" ><eqdin>\(r=3.4\) </eqdin></div>
+        </div>
+        <div style="position:absolute; width:300px; height: 50px; left:200px;">
+          <input type="range" min="0.01" max="0.99" step="0.01" value="0.3" id="x_2">
+          <div id="displayX_2"><eqdin>\(x_0 = 0.3\)</eqdin></div>
+        </div>
+        <div style="position:absolute; width:300px; height: 50px; left:400px;">
+          <input type="range" min="0" max="20" step="0.01" value="10" id="l_2">
+          <div id="displayL_2"><eqdin>\(l = 10\)</eqdin></div>
+        </div>
+      </div>
+      
+      <script src='cobweb.js'></script>
+    </div> 
     <p>
-      we alora lì
+      nutella
 
     </p>
 </dt-article>

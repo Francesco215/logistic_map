@@ -27,7 +27,6 @@ var g0 = d3.select("#curve0")
     .attr("transform","translate(" + margin.left + "," + margin.top + ")");
 
 
-// Add X axis --> it is a date format
 var x0 = d3.scaleLinear()
     .domain([0,1])
     .range([ 0, width ]);
