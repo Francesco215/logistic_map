@@ -1,18 +1,9 @@
-const curve = (r0,n=1) =>{
-    var out=[];
-    var detail=30*n;
-    for (let i=0;i<=detail;i++){
-        out.push({x:i/detail,y:logistic(i/detail,r0,n)});
-    }
-    return  out
-}
-
 // parte dello slider
 var sliderR0 = document.getElementById("r0");
 var displayR0 = document.getElementById("displayR0");
 
 var len=70;
-var r=sliderR0.value;
+r=sliderR0.value;
 displayR0.innerHTML="\\(r = "+r+"\\)";
 
 data0=curve(r);
@@ -53,7 +44,9 @@ g0.append("path")
 
 const syncR0 = function(){
     r = sliderR0.value;
-    updateR(r);
+    g0.select("#curve").data([curve(r)]).attr("d", line0);    
+    displayR0.innerHTML="\\(r = "+r+"\\)";
+    MathJax.typesetPromise([displayR0]);//slow
 }
 
 sliderR0.addEventListener("mousemove", syncR0)

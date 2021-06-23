@@ -1,7 +1,7 @@
 // parte dello slider
-var sliderR2 = document.getElementById("r_2");
+var sliderR2 = document.getElementById("r2");
 var sliderL2 = document.getElementById("l_2");
-var displayR2 = document.getElementById("displayR_2");
+var displayR2 = document.getElementById("displayR2");
 var displayL2 = document.getElementById("displayL_2");
 
 var len=70;
@@ -89,7 +89,10 @@ drag2(g2.selectAll("#dragx_2"));
 
 const syncR2 = function(){
     r = sliderR2.value;
-    updateR(r);
+    g2.select("#curve_2").data([curve(r)]).attr("d", line2);
+    g2.select("#web").data([cobweb(x_0,r,l2)]).attr("d", line2);
+    displayR2.innerHTML="\\(r = "+r+"\\)";
+    MathJax.typesetPromise([displayR2]);//slow
 }
 
 const syncL2 = function(){

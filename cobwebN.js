@@ -1,9 +1,9 @@
 // parte dello slider
-var sliderR3 = document.getElementById("r_3");
+var sliderR3 = document.getElementById("r3");
 var sliderL3 = document.getElementById("l_3");
 var sliderN3 = document.getElementById("n_3");
 
-var displayR3 = document.getElementById("displayR_3");
+var displayR3 = document.getElementById("displayR3");
 var displayL3 = document.getElementById("displayL_3");
 var displayN3 = document.getElementById("displayN_3");
 
@@ -73,7 +73,10 @@ drag3(g3.selectAll("#dragx_3"));
 
 const syncR3 = function(){
     r = sliderR3.value;
-    updateR(r);
+    g3.select('#curve_3').data([curve(r,n3)]).attr("d",line2);
+    g3.select('#web3').data([cobweb(x_0,r,l3,n3)]).attr("d",line2);
+    displayR3.innerHTML="\\(r = "+r+"\\)";
+    MathJax.typesetPromise([displayR3]);//slow
 }
 
 const syncL3 = function(){

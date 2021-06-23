@@ -74,7 +74,9 @@ drag2(g1.selectAll("#dragx_1"));
 
 const syncR = function(){
     r = sliderR1.value;
-    updateR(r);
+    g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
+    displayR1.innerHTML=="\\(r = "+r+"\\)";
+    MathJax.typesetPromise([displayR1]);//slow
     }
 
 sliderR1.addEventListener("mousemove", syncR)

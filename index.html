@@ -3,10 +3,9 @@
 <script src="https://distill.pub/template.v1.js"></script>
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
+<script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
-<script src="library.js"></script>
 <script type="text/front-matter">
   title: "The logistic map"
   description: "inserire sottotitolo"
@@ -17,7 +16,9 @@
 </script>
 
 <dt-banner style="display: none;"></dt-banner>
-<dt-article>
+<dt-article id="article">
+  <script src="library.js"></script>
+
   <h1> The Logistic Map</h1>
   <h2>Here we explore the weird properties of the logistic map</h2>
   <dt-byline></dt-byline>
@@ -129,8 +130,8 @@
       
       <div style="position:relative; width:800px; height: 50px; left:75px; top: -10px;">      
         <div style="position:absolute; width:300px; height: 50px; left:0px;">
-          <input type="range" min="0" max="4" step="0.01" value="3.4" id="r_2">
-          <div id="displayR_2" ><eqdin>\(r=3.4\) </eqdin></div>
+          <input type="range" min="0" max="4" step="0.01" value="3.4" id="r2">
+          <div id="displayR2" ><eqdin>\(r=3.4\) </eqdin></div>
         </div>
         <div style="position:absolute; width:300px; height: 50px; left:200px;">
           <input type="range" min="-2" max="2" step="0.01" value="10" id="l_2">
@@ -188,8 +189,8 @@
       
       <div style="position:relative; width:800px; height: 50px; left:75px; top: -10px;">      
         <div style="position:absolute; width:300px; height: 50px; left:0px;">
-          <input type="range" min="0" max="4" step="0.01" value="3.4" id="r_3">
-          <div id="displayR_3" ><eqdin>\(r=3.4\) </eqdin></div>
+          <input type="range" min="0" max="4" step="0.01" value="3.4" id="r3">
+          <div id="displayR3" ><eqdin>\(r=3.4\) </eqdin></div>
         </div>
         <div style="position:absolute; width:300px; height: 50px; left:200px;">
           <input type="range" min="-2" max="2" step="0.01" value="10" id="l_3">
@@ -203,7 +204,8 @@
       
       <script src='cobwebN.js'></script>
     </div> 
-    
+
+
 </dt-article>
 
 <dt-appendix>

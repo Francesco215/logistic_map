@@ -5,21 +5,25 @@ const logistic = (x,r,n=1) => {
     return x;
 }
 
+const curve = (r0,n=1) =>{
+    var out=[];
+    var detail=50*n;
+    for (let i=0;i<=detail;i++){
+        out.push({x:i/detail,y:logistic(i/detail,r0,n)});
+    }
+    return  out
+}
+
 var x_0=0.3;
 
 const updateR = (r) =>{
-    displayR0.innerHTML="\\(r = "+r+"\\)";
-    displayR1.innerHTML="\\(r = "+r+"\\)";
-    displayR2.innerHTML="\\(r = "+r+"\\)";
-    displayR3.innerHTML="\\(r = "+r+"\\)";
-    MathJax.typesetPromise([displayR0]);//slow
-    MathJax.typesetPromise([displayR1]);//slow
-    MathJax.typesetPromise([displayR2]);//slow
-    MathJax.typesetPromise([displayR3]);//slow
-    sliderR0.value=r;
-    sliderR1.value=r;
-    sliderR2.value=r;
-    sliderR3.value=r;
+    display=[displayR0,displayR1,displayR2,displayR3];
+    slider=[sliderR0,sliderR1,sliderR2,sliderR3];
+    for(i=0;i<4;i++){
+        display[i].innerHTML="\\(r = "+r+"\\)";
+        MathJax.typesetPromise([display[i]]);//slow
+        slider[i]=r;
+    }
     g0.select("#curve").data([curve(r)]).attr("d", line0);
     g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
     g2.select("#curve_2").data([curve(r)]).attr("d", line2);
@@ -91,3 +95,5 @@ const cobweb = (x,r,l,n=1) =>{
     return vertex;
 }
 
+body=document.getElementById("article");
+body.addEventListener("mouseup",function(){updateR(r)});
