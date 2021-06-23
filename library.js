@@ -22,7 +22,7 @@ const updateR = (r) =>{
     for(i=0;i<4;i++){
         display[i].innerHTML="\\(r = "+r+"\\)";
         MathJax.typesetPromise([display[i]]);//slow
-        slider[i]=r;
+        slider[i].value=r;
     }
     g0.select("#curve").data([curve(r)]).attr("d", line0);
     g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
