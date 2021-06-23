@@ -1,16 +1,13 @@
 // parte dello slider
 var sliderR2 = document.getElementById("r_2");
-var sliderX2 = document.getElementById("x_2");
 var sliderL2 = document.getElementById("l_2");
 var displayR2 = document.getElementById("displayR_2");
-var displayX2 = document.getElementById("displayX_2");
 var displayL2 = document.getElementById("displayL_2");
 
 var len=70;
-var x_2=sliderX2.value;
+var x_2=0.3;
 var l2=Math.pow(10,sliderL2.value);
 displayR2.innerHTML="\\(r = "+r+"\\)";
-displayX2.innerHTML="\\(x_0 = "+x_2+"\\)";
 displayL2.innerHTML="\\(l = "+l2.toPrecision(3)+"\\)";
 
 data2=curve(r);
@@ -24,6 +21,10 @@ var marginCobweb = {top: 10, right: 30, bottom: 30, left: 60},
 var x2 = d3.scaleLinear()
     .domain([0,1])
     .range([ 0, widthCobweb ]);
+
+var x2m1 = d3.scaleLinear()
+    .domain([0,widthCobweb])
+    .range([0,1])
 
     // Add Y axis
 var y2 = d3.scaleLinear()
@@ -72,15 +73,29 @@ g2.append("path")
     .style("stroke",'#898989')
     .style("stroke-width","1px");
 
+g2.append("circle")
+    .attr("cx",x2(x_2))
+    .attr("cy",heightCobweb)
+    .attr("r",7.5)
+    .attr("id","dragx_2")
+    .style("fill",'#898989')
+
+var drag2=d3.drag()
+    .on("drag", function(){
+        d3.select("#dragx_2")
+            .attr("cx",d3.event.x);
+        x_2=x2m1(d3.event.x);
+        console.log(x_2);
+        syncX2();
+    })
+drag2(g2.selectAll("#dragx_2"));
+
 const syncR2 = function(){
     r = sliderR2.value;
     updateR(r);
 }
 const syncX2 = function(){
-    x_2 = sliderX2.value;
-    displayX2.innerHTML="\\(x_0 = "+x_2+"\\)";
     web=cobweb(x_2,r,l2);
-    MathJax.typesetPromise([displayX2]);//slow
     g2.select("#web").data([web]).attr("d", line2);
 }
 const syncL2 = function(){
@@ -93,7 +108,6 @@ const syncL2 = function(){
 
 
 sliderR2.addEventListener("mousemove", syncR2)
-sliderX2.addEventListener("mousemove",syncX2)
 sliderL2.addEventListener("mousemove",syncL2)
 
 

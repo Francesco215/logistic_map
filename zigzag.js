@@ -9,14 +9,11 @@ var sequence = (x,r,len) =>{
 
 // parte dello slider
 var sliderR1 = document.getElementById("r1");
-var sliderX_0 = document.getElementById("x_0");
-var displayR1 = document.getElementById("displayR1");
 var displayX_0 = document.getElementById("displayX_0");
 
 var len=70;
-var x_0=sliderX_0.value;
+var x_0=0.3;
 displayR1.innerHTML="\\(r = "+r+"\\)";
-displayX_0.innerHTML='\\(x_0 = '+x_0+'\\)';
 
 
 data=sequence(x_0,r,len);
@@ -43,6 +40,10 @@ var y = d3.scaleLinear()
     .domain([0,1])
     .range([height, 0]);
 
+var ym1 = d3.scaleLinear()
+    .domain([height,0])
+    .range([0,1])
+
 
 
 const line=d3.line()
@@ -59,6 +60,23 @@ g1.append("svg:path")
     .style("stroke",'#ff7300')
     .style("stroke-width","3px");
 
+g1.append("circle")
+    .attr("cx",0)
+    .attr("cy",y(x_0))
+    .attr("r",7.5)
+    .attr("id","dragx_1")
+    .style("fill",'#ff7300')
+
+var drag2=d3.drag()
+    .on("drag", function(){
+        d3.select("#dragx_1")
+            .attr("cy",d3.event.y);
+        x_0=ym1(d3.event.y);
+        console.log(x_0);
+        syncX_0();
+    })
+drag2(g1.selectAll("#dragx_1"));
+
 
 const syncR = function(){
     r = sliderR1.value;
@@ -66,14 +84,10 @@ const syncR = function(){
     }
 
 const syncX_0 = function(){
-    x_0 = sliderX_0.value;
-    displayX_0.innerHTML='\\(x_0 = '+x_0+'\\)';
-    MathJax.typesetPromise([displayX_0]);//slow
     g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
     }
 
 sliderR1.addEventListener("mousemove", syncR)
-sliderX_0.addEventListener("mousemove",syncX_0 )
 
 g1.append("g")
     .attr("transform", "translate(0," + height + ")")
