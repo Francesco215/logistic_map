@@ -1,8 +1,8 @@
-const curve = (r0) =>{
+const curve = (r0,n=1) =>{
     var out=[];
-    var detail=300;
+    var detail=30*n;
     for (let i=0;i<=detail;i++){
-        out.push({x:i/detail,y:logistic(i/detail,r0)});
+        out.push({x:i/detail,y:logistic(i/detail,r0,n)});
     }
     return  out
 }

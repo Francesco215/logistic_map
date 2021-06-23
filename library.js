@@ -5,31 +5,39 @@ const logistic = (x,r,n=1) => {
     return x;
 }
 
+var x_0=0.3;
+
 const updateR = (r) =>{
     displayR0.innerHTML="\\(r = "+r+"\\)";
     displayR1.innerHTML="\\(r = "+r+"\\)";
     displayR2.innerHTML="\\(r = "+r+"\\)";
+    displayR3.innerHTML="\\(r = "+r+"\\)";
     MathJax.typesetPromise([displayR0]);//slow
     MathJax.typesetPromise([displayR1]);//slow
     MathJax.typesetPromise([displayR2]);//slow
+    MathJax.typesetPromise([displayR3]);//slow
     sliderR0.value=r;
     sliderR1.value=r;
     sliderR2.value=r;
-    data0=curve(r);
-    g0.select("#curve").data([data0]).attr("d", line0);
+    sliderR3.value=r;
+    g0.select("#curve").data([curve(r)]).attr("d", line0);
     g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
-    data2=curve(r);
-    web=cobweb(x_0,r,l2);
-    g2.select("#curve_2").data([data2]).attr("d", line2);
-    g2.select("#web").data([web]).attr("d", line2);
+    g2.select("#curve_2").data([curve(r)]).attr("d", line2);
+    g2.select("#web").data([cobweb(x_0,r,l2)]).attr("d", line2);
+    g3.select('#curve_3').data([curve(r,n3)]).attr("d",line2);
+    g3.select('#web3').data([cobweb(x_0,r,l3,n3)]).attr("d",line2);
 }
 
 const updateX0 = (x_0) =>{
+    let delta=0.001
+    if (x_0>1-delta) x_0=1-delta;
+    if (x_0<0+delta) x_0=0+delta;
     d3.select("#dragx_1").attr("cy",y(x_0));
-    g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
     d3.select("#dragx_2").attr("cx",x2(x_0));  
-    web=cobweb(x_0,r,l2);
-    g2.select("#web").data([web]).attr("d", line2);
+    d3.select("#dragx_3").attr("cx",x2(x_0));  
+    g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
+    g2.select("#web").data([cobweb(x_0,r,l2)]).attr("d", line2);
+    g3.select("#web3").data([cobweb(x_0,r,l3,n3)]).attr("d",line2);
 }
 
 

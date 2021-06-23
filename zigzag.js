@@ -10,7 +10,6 @@ var sequence = (x,r,len) =>{
 // parte dello slider
 var sliderR1 = document.getElementById("r1");
 var len=70;
-var x_0=0.3;
 displayR1.innerHTML="\\(r = "+r+"\\)";
 
 

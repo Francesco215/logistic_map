@@ -180,7 +180,29 @@
         \right. 
       $$
     </p>
-
+    <div style="position: relative; height:800px; left:-50px;">
+      
+      <div style="position: relative; height:640px" id="cobwebN"></div>      
+      <div style="position:relative; width:300px; height: 50px; left:670px; top: -10px;">\(x_n\)</div> <!--xlabel-->
+      <div style="position:absolute; width:300px; height: 50px; left:70px; top: 0px;">\(x_{n+1}\)</div> <!--ylabel-->
+      
+      <div style="position:relative; width:800px; height: 50px; left:75px; top: -10px;">      
+        <div style="position:absolute; width:300px; height: 50px; left:0px;">
+          <input type="range" min="0" max="4" step="0.01" value="3.4" id="r_3">
+          <div id="displayR_3" ><eqdin>\(r=3.4\) </eqdin></div>
+        </div>
+        <div style="position:absolute; width:300px; height: 50px; left:200px;">
+          <input type="range" min="-2" max="2" step="0.01" value="10" id="l_3">
+          <div id="displayL_3"><eqdin>\(l = 10\)</eqdin></div>
+        </div>
+        <div style="position:absolute; width:300px; height: 50px; left:400px;">
+          <input type="range" min="1" max="10" step="1" value="2" id="n_3">
+          <div id="displayN_3"><eqdin>\(l = 10\)</eqdin></div>
+        </div>
+      </div>
+      
+      <script src='cobwebN.js'></script>
+    </div> 
     
 </dt-article>
 
