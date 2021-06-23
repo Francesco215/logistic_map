@@ -9,8 +9,6 @@ var sequence = (x,r,len) =>{
 
 // parte dello slider
 var sliderR1 = document.getElementById("r1");
-var displayX_0 = document.getElementById("displayX_0");
-
 var len=70;
 var x_0=0.3;
 displayR1.innerHTML="\\(r = "+r+"\\)";
@@ -69,11 +67,8 @@ g1.append("circle")
 
 var drag2=d3.drag()
     .on("drag", function(){
-        d3.select("#dragx_1")
-            .attr("cy",d3.event.y);
         x_0=ym1(d3.event.y);
-        console.log(x_0);
-        syncX_0();
+        updateX0(x_0);
     })
 drag2(g1.selectAll("#dragx_1"));
 
@@ -81,10 +76,6 @@ drag2(g1.selectAll("#dragx_1"));
 const syncR = function(){
     r = sliderR1.value;
     updateR(r);
-    }
-
-const syncX_0 = function(){
-    g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
     }
 
 sliderR1.addEventListener("mousemove", syncR)

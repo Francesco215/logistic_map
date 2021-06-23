@@ -5,13 +5,12 @@ var displayR2 = document.getElementById("displayR_2");
 var displayL2 = document.getElementById("displayL_2");
 
 var len=70;
-var x_2=0.3;
 var l2=Math.pow(10,sliderL2.value);
 displayR2.innerHTML="\\(r = "+r+"\\)";
 displayL2.innerHTML="\\(l = "+l2.toPrecision(3)+"\\)";
 
 data2=curve(r);
-web=cobweb(x_2,r,l2);
+web=cobweb(x_0,r,l2);
 
 // set the dimensions and margins of the graph
 var marginCobweb = {top: 10, right: 30, bottom: 30, left: 60},
@@ -74,7 +73,7 @@ g2.append("path")
     .style("stroke-width","1px");
 
 g2.append("circle")
-    .attr("cx",x2(x_2))
+    .attr("cx",x2(x_0))
     .attr("cy",heightCobweb)
     .attr("r",7.5)
     .attr("id","dragx_2")
@@ -82,26 +81,21 @@ g2.append("circle")
 
 var drag2=d3.drag()
     .on("drag", function(){
-        d3.select("#dragx_2")
-            .attr("cx",d3.event.x);
-        x_2=x2m1(d3.event.x);
-        console.log(x_2);
-        syncX2();
+        x_0=x2m1(d3.event.x);
+        updateX0(x_0);
     })
+
 drag2(g2.selectAll("#dragx_2"));
 
 const syncR2 = function(){
     r = sliderR2.value;
     updateR(r);
 }
-const syncX2 = function(){
-    web=cobweb(x_2,r,l2);
-    g2.select("#web").data([web]).attr("d", line2);
-}
+
 const syncL2 = function(){
     l2 =Math.pow(10 ,sliderL2.value);
     displayL2.innerHTML="\\(l = "+l2.toPrecision(3)+"\\)";
-    web=cobweb(x_2,r,l2);
+    web=cobweb(x_0,r,l2);
     MathJax.typesetPromise([displayL2]);//slow
     g2.select("#web").data([web]).attr("d", line2);
 }

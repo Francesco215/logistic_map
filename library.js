@@ -19,11 +19,17 @@ const updateR = (r) =>{
     g0.select("#curve").data([data0]).attr("d", line0);
     g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
     data2=curve(r);
-    web=cobweb(x_2,r,l2);
+    web=cobweb(x_0,r,l2);
     g2.select("#curve_2").data([data2]).attr("d", line2);
     g2.select("#web").data([web]).attr("d", line2);
+}
 
-
+const updateX0 = (x_0) =>{
+    d3.select("#dragx_1").attr("cy",y(x_0));
+    g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
+    d3.select("#dragx_2").attr("cx",x2(x_0));  
+    web=cobweb(x_0,r,l2);
+    g2.select("#web").data([web]).attr("d", line2);
 }
 
 
