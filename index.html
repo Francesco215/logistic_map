@@ -1,43 +1,52 @@
 <!doctype html>
 <meta charset="utf-8">
-<script src="https://distill.pub/template.v1.js"></script>
+<script src="https://distill.pub/template.v2.js"></script>
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
-<script type="text/front-matter">
-  title: "The logistic map"
-  description: "inserire sottotitolo"
-  authors:
-  - Francesco Sacco: https://github.com/Francesco215
-  affiliations:
-  - University of Pisa: http://unipi.it
-</script>
 
+<d-front-matter>
+  <script type="text/json">{
+    "title": "The Logistic Map",
+    "description": "inserire desctizione",
+    "authors": [
+      {
+        "author": "Francesco Sacco",
+        "authorURL": "https://github.com/Francesco215",
+        "affiliation": "University of Pisa",
+        "affiliationURL": "http://unipi.it"
+      }
+    ],
+    "katex": {
+      "delimiters" : [
+        {"left": "$", "right": "$", "display": false}
+      ]
+    }
+  }</script>
+</d-front-matter>
+<d-title><h1>The Logistic Map</h1></d-title>
 
-
-<dt-banner style="display: none;"></dt-banner>
-<dt-article id="article">
+<d-article id="article">
   <script src="library.js"></script>
 
-  <h1> The Logistic Map</h1>
   <h2>Here we explore the weird properties of the logistic map</h2>
-  <dt-byline></dt-byline>
+  <d-byline></d-byline>
   <p>
-    The best way to introduce yourself to the logistic map is to watch this video <dt-cite key="veritasium"></dt-cite>,
+    The best way to introduce yourself to the logistic map is to watch this video <d-cite key="veritasium"></d-cite>,
     if you are intrested in the subject theese are probably the best 18 minutes you will ever spend on Youtube.
-    Most of the tecnical part of this page is taken from <dt-cite key="strogatz"></dt-cite>
+    Most of the tecnical part of this page is taken from <d-cite key="strogatz"></d-cite>
   </p>
   <h2><a class="marker" href="#section-1" id="section-1">1</a> The Definition</h2>
   <p>
-    The definition of the logistic map is as simple as it gets, yet il leads to very complex and intresting behavior  <dt-cite key="logistic"></dt-cite>.
+    The definition of the logistic map is as simple as it gets, yet il leads to very complex and intresting behavior  <d-cite key="logistic"></d-cite>.
     \[x_{n+1} = rx_n(1-x_n)\] 
     where \(0\le r \le 4 \) is a parameter
-      <dt-fn>
+      <d-footnote>
         This is because the maximum of the logistic function is \(r/4\),
         and if we want to keep \(x_{n}\in [0,1]\) we must keep \(r \in [0,4]\) 
-      </dt-fn>
+      </d-footnote>
 
   </p>
   <div style="position: relative; height:500px; left:-50px;">
@@ -130,7 +139,7 @@
 
       </figcaption>
     </div>
-    <div class="l-page side">
+    <div class="svelte-1kuj9kb ">
       <a class="marker" href="#image-3" id="image-3">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Logistic_Map_Bifurcations_Underneath_Mandelbrot_Set.gif" style='height: 100%; width: 100%; object-fit: contain'>
       </a>
@@ -141,13 +150,13 @@
     </div>  
     <p>
       The most incredible property of the bifurcation diagram is that the ratio the difference between successive \(r_n\)
-      converges to a constant \(\delta\) called "Feigenbaum's Constant"  <dt-cite key="feigenbaum"></dt-cite>
+      converges to a constant \(\delta\) called "Feigenbaum's Constant"  <d-cite key="feigenbaum"></d-cite>
       \[
         \delta=\lim_{n\to\infty}\frac{r_n-r_{n-1}}{r_{n+1}-r_n}\approx 4.699...
       \]
       Not only that! if we change the function of the mapping \(x_{n+1}=f(x_n)\) the resulting bifurcation diagram
-      has the same constant<dt-fn>With a few exceptions</dt-fn>, even the Mandelbrot set!
-      <dt-fn>For the Mandelbrot set f(x)=x^2+r</dt-fn> (figure <a href="#image-3">3</a>)
+      has the same constant<d-footnote>With a few exceptions</d-footnote>, even the Mandelbrot set!
+      <d-footnote>For the Mandelbrot set f(x)=x^2+r</d-footnote> (figure <a href="#image-3">3</a>)
     </p>
     <p>
       Unfortunately, just by watching the bifurcation diagram this is all we can tell, in order to have
@@ -225,14 +234,14 @@
       Since \(\epsilon\) is small we can expand \(f\) around \(x^*\)
       \[f(x^*+\epsilon)=f(x^*)+f'(x^*)\epsilon\]
       And if we substitute this in the system above
-      <dt-fn>
+      <d-footnote>
         I have written that if \(|f'(x^*)|=1\;\;\) \(x^*\) is stable because for the logistic (and for most functions) it means that
         you are either passing throught the regime where \(x_n\to0\) to the one where \(x_n\to c\in (0,1]\),
         but \(\lim_{\epsilon\to 0}c=0\), so \(x^*=0\) is a stable point. Or you are right on the first bifurcation,
         so the function oscillates in between two points that get closer and closer toghether as \(\epsilon\to 0\).
         Let me reiterate that this does not hold for all functions, but we are going to pretend that it does for
         sake of simplicity.
-      </dt-fn>
+      </d-footnote>
       $$
         \left\{ 
           \begin{array}{c}
@@ -242,7 +251,8 @@
         \right. 
       $$
       If \(|f'(x^*)|=0\) than the function is "Superstable" in \(x^*\), this means that it converges faster than
-      exponential.<dt-fn>I have mentioned it because the superstable points will be useful later</dt-fn>
+      exponential.<d-footnote>I have mentioned it because the superstable points will be useful later</d-footnote
+>
     </p>
     <p>
       For the logistic map \(f'(x)=r(1-2x)\) and the fixed point are found solving \(x^*=f(x^*)=rx^*(1-x^*)\),
@@ -348,10 +358,10 @@
     <p>
       maronn maronn è un miracolo!
     </p>
-</dt-article>
+</d-article>
 
-<dt-appendix>
-</dt-appendix>
+<d-appendix>
+</d-appendix>
 
 <script type="text/bibliography">
   @online{veritasium,
