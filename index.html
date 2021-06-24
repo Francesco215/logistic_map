@@ -15,6 +15,8 @@
   - University of Pisa: http://unipi.it
 </script>
 
+
+
 <dt-banner style="display: none;"></dt-banner>
 <dt-article id="article">
   <script src="library.js"></script>
@@ -22,9 +24,14 @@
   <h1> The Logistic Map</h1>
   <h2>Here we explore the weird properties of the logistic map</h2>
   <dt-byline></dt-byline>
-  <h2><a class="marker" href="#section-1" id="section-1">1</a> The definition</h2>
   <p>
-    The definition of the logistic map is very simple, yet il leads to very complex and intresting behavior  <dt-cite key="logistic"></dt-cite>.
+    The best way to introduce yourself to the logistic map is to watch this video <dt-cite key="veritasium"></dt-cite>,
+    if you are intrested in the subject theese are probably the best 18 minutes you will ever spend on Youtube.
+    Most of the tecnical part of this page is taken from <dt-cite key="strogatz"></dt-cite>
+  </p>
+  <h2><a class="marker" href="#section-1" id="section-1">1</a> The Definition</h2>
+  <p>
+    The definition of the logistic map is as simple as it gets, yet il leads to very complex and intresting behavior  <dt-cite key="logistic"></dt-cite>.
     \[x_{n+1} = rx_n(1-x_n)\] 
     where \(0\le r \le 4 \) is a parameter
       <dt-fn>
@@ -73,33 +80,87 @@
       <ul>
         <li>For \(r\le 1\quad x_n\to 0\). This can be explained by the fact that \(r< 1\) represents
         a declining population in model where \(x_{n+1}=rx_n\), and the factor \(1-x_n\) is always less than \(1\)</li>
-        <li>For \(1&lt r &lt c_1 \) where \(c_1\) is some constant we don't know anything about yet 
+        <li>For \(1&lt r &lt r_1 \) where \(r_1\) is some constant we don't know anything about yet 
           the map converges to a single value</li>
         <li>
-          For \(c_1&lt r &lt c_2 \) the tends to oscillate between 2 values
+          For \(r_1&lt r &lt r_2 \) the tends to oscillate between 2 values
         </li>
         <li>
-          For \(c_2&lt r &lt c_3 \) the tends to oscillate between 4 values
+          For \(r_2&lt r &lt r_3 \) the tends to oscillate between 4 values
         </li>
         <li>
-          For \(c_3&lt r &lt c_4 \) the tends to oscillate between 8 values
+          For \(r_3&lt r &lt r_4 \) the tends to oscillate between 8 values
         </li>
         <li>
-          After that it becomes harder and harder to see if the periods keep doubling because the constants \(c_n\)
-          keep getting closer togheder, so it seems that they converge to some constant \(c_\infty\)
+          After that it becomes harder and harder to see if the periods keep doubling because the constants \(r_n\)
+          keep getting closer togheder, so it seems that they converge to some constant \(r_\infty\)
         </li>
         <li>
           After that, the way the system behaves is chaotic, with a "island" of stability 3
         </li>
       </ul>
       </p>
-      <p>
-        Unfortunately, just by watching the succession \(x_n\) this is all we can tell, in order to have
-        a deeper understanding of the phenomenon we must use another visual method.
-      </p>
-    
+  <h2><a class="marker" href="#section-3" id="section-3">3</a> The Bifurcation Diagram</h2>
+    <div class="l-page side">
+      <a class="marker" href="#image-1" id="image-1">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/LogisticMap_BifurcationDiagram.png" style='height: 100%; width: 100%; object-fit: contain'>
+      </a>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+        Figure 1: Bifurcation diagram [<a href="https://commons.wikimedia.org/wiki/File:Logistic_Bifurcation_map_High_Resolution.png">source</a>]
 
-  <h2><a class="marker" href="#section-3" id="section-3">3</a> The Cobweb</h2>
+      </figcaption>
+    </div>
+    <p>
+      The bifurcation diagram summarizes this (figure <a href="#image-1">1</a>). The horizontal axis shows all possible values of \(r\) and
+      the vertical axis shows the set of values of \(x\) visited asymptotically from almost all initial
+      conditions by the iterates of the logistic equation with that \(r\) value. 
+    </p>
+    <p>
+      The bifurcation diagram is a self-similar: if we zoom in on the above-mentioned value \(r_\infty\)
+      and focus on one arm of the three, the situation nearby looks like a shrunk and slightly distorted
+      version of the whole diagram. The same is true for all other non-chaotic points.
+      This is an example of the deep and ubiquitous connection between chaos and fractals. (figure <a href="#image-2">2</a>)
+    </p>
+    <div class="l-page-outset">
+      <a class="marker" href="#image-2" id="image-2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Logistic_map_bifurcation_diagram_magnifications.png" style='height: 100%; width: 100%; object-fit: contain'>
+      </a>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+        Figure 2: Bifurcation diagram zoomed [<a href="https://commons.wikimedia.org/wiki/File:Logistic_map_bifurcation_diagram_magnifications.png">source</a>]
+
+      </figcaption>
+    </div>
+    <div class="l-page side">
+      <a class="marker" href="#image-3" id="image-3">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Logistic_Map_Bifurcations_Underneath_Mandelbrot_Set.gif" style='height: 100%; width: 100%; object-fit: contain'>
+      </a>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+        Figure 3: Bifurcation diagram of the Mandelbrot Set [<a href="https://commons.wikimedia.org/wiki/File:Logistic_Map_Bifurcations_Underneath_Mandelbrot_Set.gif">source</a>]
+
+      </figcaption>
+    </div>  
+    <p>
+      The most incredible property of the bifurcation diagram is that the ratio the difference between successive \(r_n\)
+      converges to a constant \(\delta\) called "Feigenbaum's Constant"  <dt-cite key="feigenbaum"></dt-cite>
+      \[
+        \delta=\lim_{n\to\infty}\frac{r_n-r_{n-1}}{r_{n+1}-r_n}\approx 4.699...
+      \]
+      Not only that! if we change the function of the mapping \(x_{n+1}=f(x_n)\) the resulting bifurcation diagram
+      has the same constant<dt-fn>With a few exceptions</dt-fn>, even the Mandelbrot set!
+      <dt-fn>For the Mandelbrot set f(x)=x^2+r</dt-fn> (figure <a href="#image-3">3</a>)
+    </p>
+    <p>
+      Unfortunately, just by watching the bifurcation diagram this is all we can tell, in order to have
+      a deeper understanding of the phenomenon we must use another visual method.
+    </p>
+
+
+
+
+
+
+
+  <h2><a class="marker" href="#section-4" id="section-4">4</a> The Cobweb</h2>
     <p>
       Given \(x_{n+1}=f(x_n)\) the Cobweb works as follows: 
       <ul>
@@ -144,7 +205,7 @@
     <p>
       By playing with the graph you can clearly see that for low \(r\) the equilibrium points are
       the ones in the intersection between \(f(x)\) and the bisectrix. This makes sense because if \(f(x^*)=x^*\)
-      Where\(x^*\) is the intersection point the succession stays constant.
+      Where \(x^*\) is the intersection point the succession stays constant.
       But why for some \(r\) doesn't want to stay on \(x^*\)?.
     </p>
     <p>
@@ -180,6 +241,33 @@
           \end{array}
         \right. 
       $$
+      If \(|f'(x^*)|=0\) than the function is "Superstable" in \(x^*\), this means that it converges faster than
+      exponential.<dt-fn>I have mentioned it because the superstable points will be useful later</dt-fn>
+    </p>
+    <p>
+      For the logistic map \(f'(x)=r(1-2x)\) and the fixed point are found solving \(x^*=f(x^*)=rx^*(1-x^*)\),
+      which has as solutions \(x^*=0\) and \(x^*=1-1/r\). The latter one of which is in the range of allowable
+      \(x\) only if \(r\ge 1\)
+    </p>
+    <p>
+      Let's study the stability by calculating the derivative
+      $$
+        \left\{ 
+          \begin{array}{c}
+          f'(x^*=0)=r\quad\rightarrow\quad \mathrm{stable\: for\: r\le1}\\
+          f'(x^*=1-1/r)= 2-r \quad\rightarrow\quad \mathrm{stable\: for\:1\le r\le3}
+          \end{array}
+        \right. 
+      $$
+    </p>
+    <p>
+      Studying \(f'\) we can only calculate \(r_0\) and \(r_1\), if we want to know more about stable Cycles
+      we need to study \(f^2(x)=f\big(f(x)\big)\), \(f^4(x)\), and so on...
+    </p>
+    <p>
+      This is because if we end up in a stable 2-cycle it means that \(x_{n+2}=f^2(x_{n})=x_{n}\), the same idea
+      goes for any \(c\)-cycle. You can see it visually by setting the cobweb for \(c=1\) and \(r\) slightly
+      bigger than 3 so that you have a 2-cycle and than changing \(c=2\)
     </p>
     <div style="position: relative; height:800px; left:-50px;">
       
@@ -205,19 +293,94 @@
       <script src='cobwebN.js'></script>
     </div> 
 
+    <p>
+      As you can see the cobweb converges to one of the 2 values the function oscillates with. The same goes if you
+      put the system in a generic \(c\)-cycle.
+    </p>
+    <p>
+      Just like we did before we can study the stability of the 2-cycle by studying \(f^2(x)\) and 
+      \(\big(f^2\big)'(x)\). The resultin formula is a quartic polynomial, but since \(x^*=0,1-1/r\) are still
+      solutions, it can be factorized in this way:
+      \[
+        f^2(x)=r^2x(1-x)\big[1-rx(1-x)\big]
+      \]
+      The temn in the square parenthesis gives us this two solutions
+      \[
+        x_{1,2}^*=\frac{r+1\pm\sqrt{(r-3)(r+1)}}{2r}
+      \]
+      since we want them to be physical solutions we want \((r-3)(r+1)\ge0\), thus a 2-cycle
+      exists for \(r>3\)
+    </p>
+    <p>
+      To study the stability we calculate the derivative in one of the two points
+      \[<!--Ma merchè sto apostrofo è enorme!?-->
+        \big(f^2(x_1^*)\big)' =f'(x_1^*)f'(x_2^*)=r^2(1-2x_1^*)(1-2x_2^*)=
+      \]
+      \[
+        =r^2\big[1-2(x_1^*+x_2^*)+4x_1^*+x_2^*\big]=r^2\big[1-2(r+1)/r+r(r+1)/r^2\big]=
+      \]
+      \[
+        =4+2r-r^2
+      \]
+      Therefore the cycle is stable for \(|4+2r-r^2|\le 1\), i.e. for \[3\le r\le 1+\sqrt 6\]
+      From now on a few more analytical results can be obtained, but they are much harder and
+      they don't really give much insight, so we are going to skip them.
+    </p>
+  
 
+
+
+
+
+
+  <h2><a class="marker" href="#section-4" id="section-4">4</a> Renomalization</h2>
+    <p>
+      So far we have explained how to calculate when the bifurcation occur, this can help us to estimate the
+      Feigenbaum's constant, but there is a much more efficent and general way to calculate it and to explain
+      why it comes up the same in every generating function \(f\), and it's by using renormalization theory.
+    </p>
+
+
+
+
+
+  <h2><a class="marker" href="#section-5" id="section-5">5</a> Why it comes up in Nature</h2>
+    <p>
+      maronn maronn è un miracolo!
+    </p>
 </dt-article>
 
 <dt-appendix>
 </dt-appendix>
 
 <script type="text/bibliography">
+  @online{veritasium,
+    title={This equation will change how you see the world (the logistic map)},
+    author={Derek Muller Veritasium},
+    year={2020},
+    url={https://www.youtube.com/watch?v=ovJcsL7vyrk}
+  }
+  @inbook{strogatz,
+    author={Steven Strogatz},
+    title ={NonLinear Dynamics and Chaos},
+    publisher ={CRC press},
+    year = {2014},
+    chapter = {10},
+    url={https://www.amazon.it/Nonlinear-Dynamics-Chaos-2nd-Applications/dp/0813349109/ref=sr_1_4?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2PMCR6REZQLFG&dchild=1&keywords=strogatz&qid=1624542557&s=books&sprefix=strogatz%2Caps%2C294&sr=1-4}
+  }
   @article{logistic,
     title={Simple mathematical models with very complicated dynamics},
     author={Robert M. May},
     journal={Nature},
     year={1976},
     url={https://www.nature.com/articles/261459a0}
+  }
+  @article{feigenbaum,
+    title={The transition to aperiodic behavior in turbulent systems},
+    author={Mitchell J. Feigenbaum},
+    journal={Communications in Mathematical Physics},
+    year={1980},
+    url={https://link.springer.com/article/10.1007/BF01205039}
   }
 </script>
 

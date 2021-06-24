@@ -7,7 +7,7 @@ const logistic = (x,r,n=1) => {
 
 const curve = (r0,n=1) =>{
     var out=[];
-    var detail=50*n;
+    var detail=300*n;
     for (let i=0;i<=detail;i++){
         out.push({x:i/detail,y:logistic(i/detail,r0,n)});
     }
