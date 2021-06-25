@@ -27,7 +27,7 @@
   <p>
     The best way to introduce yourself to the logistic map is to watch this video <dt-cite key="veritasium"></dt-cite>,
     if you are intrested in the subject theese are probably the best 18 minutes you will ever spend on Youtube.
-    Most of the tecnical part of this page is taken from <dt-cite key="strogatz"></dt-cite>
+    Most of the tecnical stuff of this page is taken from <dt-cite key="strogatz"></dt-cite>
   </p>
   <h2><a class="marker" href="#section-1" id="section-1">1</a> The Definition</h2>
   <p>
@@ -147,7 +147,7 @@
       \]
       Not only that! if we change the function of the mapping \(x_{n+1}=f(x_n)\) the resulting bifurcation diagram
       has the same constant<dt-fn>With a few exceptions</dt-fn>, even the Mandelbrot set!
-      <dt-fn>For the Mandelbrot set f(x)=x^2+r</dt-fn> (figure <a href="#image-3">3</a>)
+      <dt-fn>For the Mandelbrot set \(f(x)=x^2+r\)</dt-fn> (figure <a href="#image-3">3</a>)
     </p>
     <p>
       Unfortunately, just by watching the bifurcation diagram this is all we can tell, in order to have
@@ -339,10 +339,110 @@
       Feigenbaum's constant, but there is a much more efficent and general way to calculate it and to explain
       why it comes up the same in every generating function \(f\), and it's by using renormalization theory.
     </p>
+    <div class="l-page side">
+      <a class="marker" href="#image-4" id="image-4">
+        <img src="images/R_n.png" style='height: 100%; width: 100%; object-fit: contain'>
+      </a>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+        Figure 4: Schematic diagram that shows where are the \(R_n\) <dt-cite key="strogatz"></dt-cite>
 
+      </figcaption>
+    </div> 
+    <p>
+      First we introduce some notation. Let \(f(x,r)\) denote a unimodal map that undergoes a period doubling route to
+      chaos as \(r\) increases, and suppose that \(x_m\) is the maximum on \(f\). Let \(r_n\) the value of \(r\) at which
+      the \(2^n\)-cycle, and let \(R_n\) the value of \(r\) at which the \(2^n\)-cycle is superstable.
+    </p>
+    <p>
+      A \(n\)-cycle to be superstable has to satisfy that 
+      \[
+        \big(f^{n}(x^*,R_n)\big)'=\prod_{i=1}^{n}f'(x_i^*,R_n)=0
+      \]
+      Therefore  \(x_m\in\{x_i^*\}\), consequently a simple way to locate \(R_n\) is to intersect the bifurcation
+      diagram with \(x=x_m\). (figure <a href="#image4">4</a>)
+    </p>
+    <p>
+      Now let's take a look at \(f(x,R_0)\) and \(f^2(x,R_1)\) (figure <a href="#image5">5</a>), as you can see the
+      image (c) looks like a smaller rotated version of (a)
+    </p>
+    <div class="l-body">
+      <a class="marker" href="#image-5" id="image-5">
+        <img src="images/renormalization1.png" style='height: 100%; width: 100%; object-fit: contain'>
+      </a>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+        Figure 5: confront between \(f(x,R_0)\) and \(f^2(x,R_1)\) <dt-cite key="strogatz"></dt-cite>
+      </figcaption>
+    </div> 
+    <p>
+      Now we "Renormalize" the image in (c) such that it's as similar as possible to \(f(x,R_0)\), to do so we move
+      the origin of \(x\) such that \(x_m=0\), than we blow it up by a factor \(|\alpha|&gt 1\) in both direction
+      and invert both axis \((x,y)\to(-x,-y)\).
+    </p>
+    <p>
+      We can do both operations at once by taking the scaling factor \(\alpha\) negative. Doing so is equivalent
+      to replacing \(f^2(x,R_1)\) with \(\alpha f^2(x/\alpha,R_1)\). Now we can express mathematically that they
+      are similar like so 
+      \[
+        f(x,R_0)\approx\alpha f(x/\alpha,R_1)
+      \]
+      You can see it represented in the figure below
+    </p>
+    <div class="l-body">
+      <a class="marker" href="#image-6" id="image-6">
+        <img src="images/renormalization2.png" style='height: 100%; width: 100%; object-fit: contain'>
+      </a>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+        Figure 6: Renormalization procedure between \(f(x,R_0)\) and \(f^2(x,R_1)\) <dt-cite key="strogatz"></dt-cite>
+      </figcaption>
+    </div> 
+    <p>
+      Renormalizing between \(f(x,R_0)\) and \(f^2(x,R_1)\) is approximate, but the good part is that the more
+      you renormalize, the more precise it becomes. For example \(f^2(x,R_1)\approx\alpha f^4(x/\alpha,R_2)\) is
+      a better approximation than the one between \(f\) and \(f^2\).
+      It is possible to concatenate \(n\) of this rinormalizations like so 
+      \[f(x,R_0)\approx \alpha^nf^{2^n}\bigg(\frac{x}{\alpha^n},R_n\bigg)\]
+      And it is possible to renomalize infinitely
+      \[\lim_{n\to\infty}\alpha^nf^{2^n}\bigg(\frac{x}{\alpha^n},R_n\bigg)=\nu g_0(x/\nu) \]
+      In the end you get this function \(g_0(x)\) that is a <b>universal function</b>. Since it is obtained
+      by zooming \(n\to\infty\) times by \(\alpha\) it has this two important properties:
+      <ul>
+        <li>
+          It only exists if \(\alpha\) is chosen correctly, otherwise you would zoom too much or too little
+        </li>
+        <li>
+          It is indipendent of the original shape of \(f\). This is because we keep zooming closer and closer
+          into the maximum of the function, so the only thing that remains is the order of the maximum
+          <dt-fn>Keep in mind that it doesn't depend on the coefficient, just the order. This is because the only 
+            thing we want when renormalizing is that the renormalized function resembles the original. The 
+            procedure we use assures us that the coefficient of the first non-zero order of the taylor expantion
+            stays constant.
+          </dt-fn>
+        </li>
+      </ul>
+      <p>
+      Since the memory of the first non-zero coefficent of the taylor expantion is engraved in \(\nu\), different
+      generating functions \(f_i\) will have different \(\nu_i\), but without
+      loss of generality we can set \(\nu=1\) for the logistic map.
+      </p>
+    </p>
+    <p>
+      Different universal function \(g_i(x)\) can be generated starting with \(f(x,R_i)\) instead of \(f(x,R_0)\)
+      \[
+        \nu g_i(x/\nu)=\lim_{n\to\infty}\alpha^nf^{2^n}\bigg(\frac{x}{\alpha^n},R_{n+i}\bigg)
+      \]
+      The case where we are on the onset of chaos \(R_i=R_\infty\) is the most important since then
 
+      \[
+        f(x,R_\infty)\approx\alpha f^2(x/\alpha, R_\infty)
+      \]
+      and we get the universal function \(g\equiv g_\infty\) that is self referential<dt-fn>I have already set \(\nu=1\)</dt-fn>
+      \[
+        g(x)=\alpha g^2(x/\alpha)
+      \]
+      This \(g\) is special because of this formula, it allows us throught some clever math to estimate \(\alpha\)
+      whithout doing lots of calculations
 
-
+    </p>
 
   <h2><a class="marker" href="#section-5" id="section-5">5</a> Why it comes up in Nature</h2>
     <p>
