@@ -139,15 +139,34 @@
 
       </figcaption>
     </div>  
+    <div class="l-page side">
+      <a class="marker" href="#image-4" id="image-4">
+        <img src="images/feigconstants.png" style='height: 100%; width: 100%; object-fit: contain'>
+      </a>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+        Figure 4: Visual representation of \(d_n\) and \(\Delta_n\) <dt-cite key="strogatz"></dt-cite>
+
+      </figcaption>
+    </div>  
     <p>
       The most incredible property of the bifurcation diagram is that the ratio the difference between successive \(r_n\)
-      converges to a constant \(\delta\) called "Feigenbaum's Constant"  <dt-cite key="feigenbaum"></dt-cite>
+      converges to a constant \(\delta\) called "Feigenbaum's Constant"  <dt-cite key="feigenbaum"></dt-cite>, so let
+      \(\Delta_n=r_n-r_{n-1}\)
       \[
-        \delta=\lim_{n\to\infty}\frac{r_n-r_{n-1}}{r_{n+1}-r_n}\approx 4.699...
+        \delta=\lim_{n\to\infty}\frac{\Delta_n}{\Delta_{n+1}}= 4.699\dots
       \]
       Not only that! if we change the function of the mapping \(x_{n+1}=f(x_n)\) the resulting bifurcation diagram
       has the same constant<dt-fn>With a few exceptions</dt-fn>, even the Mandelbrot set!
       <dt-fn>For the Mandelbrot set \(f(x)=x^2+r\)</dt-fn> (figure <a href="#image-3">3</a>)
+    </p>
+    <p>
+      The same goes for another constant that emerges in the bifurcation diagram of unidimentional maps. Let
+      \(f(x_{n+1})=f(x_n)\) be a generic map with maximum in \(x_m\), then let \(R_n\) be the intersection 
+      between the bifurcation diagram and \(x=x_m\), and let \(d_n\) be the width of the pitchfork an \(R_n\), than
+      \[
+        \alpha=\lim_{n\to\infty}\frac{d_n}{d_{n+1}}=2.5029\dots
+      \]
+      We will talk in more detail about this two constants in the section about Renomalization
     </p>
     <p>
       Unfortunately, just by watching the bifurcation diagram this is all we can tell, in order to have
@@ -340,11 +359,11 @@
       why it comes up the same in every generating function \(f\), and it's by using renormalization theory.
     </p>
     <div class="l-page side">
-      <a class="marker" href="#image-4" id="image-4">
+      <a class="marker" href="#image-5" id="image-5">
         <img src="images/R_n.png" style='height: 100%; width: 100%; object-fit: contain'>
       </a>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
-        Figure 4: Schematic diagram that shows where are the \(R_n\) <dt-cite key="strogatz"></dt-cite>
+        Figure 5: Schematic diagram that shows where are the \(R_n\) <dt-cite key="strogatz"></dt-cite>
 
       </figcaption>
     </div> 
@@ -366,11 +385,11 @@
       image (c) looks like a smaller rotated version of (a)
     </p>
     <div class="l-body">
-      <a class="marker" href="#image-5" id="image-5">
+      <a class="marker" href="#image-6" id="image-6">
         <img src="images/renormalization1.png" style='height: 100%; width: 100%; object-fit: contain'>
       </a>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
-        Figure 5: confront between \(f(x,R_0)\) and \(f^2(x,R_1)\) <dt-cite key="strogatz"></dt-cite>
+        Figure 6: confront between \(f(x,R_0)\) and \(f^2(x,R_1)\) <dt-cite key="strogatz"></dt-cite>
       </figcaption>
     </div> 
     <p>
@@ -387,12 +406,16 @@
       \]
       You can see it represented in the figure below
     </p>
+    <p>
+      The reason this \(\alpha\) is one of the Feigenbaum's constans is that when we renormalize we elongate the \(x\)
+      axis by \(\alpha\), so effectively, in the bifurcation diagram we widen the pitchforks by \(\alpha\).
+    </p>
     <div class="l-body">
-      <a class="marker" href="#image-6" id="image-6">
+      <a class="marker" href="#image-7" id="image-7">
         <img src="images/renormalization2.png" style='height: 100%; width: 100%; object-fit: contain'>
       </a>
       <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
-        Figure 6: Renormalization procedure between \(f(x,R_0)\) and \(f^2(x,R_1)\) <dt-cite key="strogatz"></dt-cite>
+        Figure 7: Renormalization procedure between \(f(x,R_0)\) and \(f^2(x,R_1)\) <dt-cite key="strogatz"></dt-cite>
       </figcaption>
     </div> 
     <p>
@@ -407,7 +430,7 @@
       by zooming \(n\to\infty\) times by \(\alpha\) it has this two important properties:
       <ul>
         <li>
-          It only exists if \(\alpha\) is chosen correctly, otherwise you would zoom too much or too little
+          It only exists if \(\alpha\) is chosen correctly (\(\alpha=-2.5029\dots\)), otherwise you would zoom too much or too little
         </li>
         <li>
           It is indipendent of the original shape of \(f\). This is because we keep zooming closer and closer
@@ -440,13 +463,35 @@
         g(x)=\alpha g^2(x/\alpha)
       \]
       This \(g\) is special because of this formula, it allows us throught some clever math to estimate \(\alpha\)
-      whithout doing lots of calculations
-
+      whithout doing lots of calculations, we just have to taylor expand both terms and equate the coefficient of the
+      same order.
+      \[
+        g(x)=c_0+c_1x+c_2x^2+c_2x^3+\dots
+      \]
+      We can change the definition of \(g\) by changing \(\nu\) we can we can set \(g(0)=c_0=1\) 
+      at \(x=0\), and since the \(x_m=0\) \(g'(0)=c_1=0\), so
+      \[
+        g(x)=1+c_2x^2+c_3x^3+\dots
+      \]
+      By equating the coefficients up to the seventh order can be found \(c_2 \approx 1.5276\), \(c_4\approx 0.1048\)
+      and \(\alpha\approx -2.5029\)
     </p>
 
-  <h2><a class="marker" href="#section-5" id="section-5">5</a> Why it comes up in Nature</h2>
+  <h2><a class="marker" href="#section-5" id="section-5">5</a> The Logistic map in Real Life</h2>
     <p>
-      maronn maronn è un miracolo!
+      Most real life systems are way more complex than 1-D maps and most of the times evolve following differential
+      equations, yet The bifurcation diagrams shows up in many situations. To see why let's look at The Rossler system
+      witch is a set of three differential equations:
+      $$
+        \left\{ 
+          \begin{array}{c}
+          \dot x = y-z\\
+          \dot y= x+ay\\
+          \dot z= b+z(x-c)
+          \end{array}
+        \right. 
+      $$
+      This system contains only one non linear term
     </p>
 </dt-article>
 
