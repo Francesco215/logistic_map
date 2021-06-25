@@ -493,6 +493,21 @@
       $$
       This system contains only one non linear term
     </p>
+    <div style="position: relative; height:800px; left:-50px;">
+      
+      <div style="position: relative; height:640px" id="rossler"></div>      
+      <div style="position:relative; width:300px; height: 50px; left:670px; top: -10px;">\(x\)</div> <!--xlabel-->
+      <div style="position:absolute; width:300px; height: 50px; left:70px; top: 0px;">\(y\)</div> <!--xlabel-->
+      
+      <div style="position:relative; width:800px; height: 50px; left:75px; top: -10px;">      
+        <div style="position:absolute; width:300px; height: 50px; left:0px;">
+          <input type="range" min="0" max="10" step="0.01" value="3.4" id="c">
+          <div id="displayC" ><eqdin>\(c=3.4\) </eqdin></div>
+        </div>
+      </div>
+      
+      <script src='rossler.js'></script>
+    </div> 
 </dt-article>
 
 <dt-appendix>
