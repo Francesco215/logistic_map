@@ -49,9 +49,7 @@ const rossCurve = (c,t=T,dt=dT) =>{
         for (j=0;j<3;j++){
             p[j]=p[j]+pp1[j]*dt;
         }
-        if (i>30/dt){
-            traj.push({x:p[0],y:p[1],i:i});
-        }
+        traj.push({x:p[0],y:p[1],i:i*dt}); 
     }
     return traj;
 }   
@@ -62,8 +60,12 @@ const color=d3.scaleLinear()
     */
 
 // Add the curve
+
+data=rossCurve(c)
+var sl=50
+
 g4.append("path")
-    .data([rossCurve(c)])
+    .data([data.slice(sl/dT,-1)])
     .attr("d",line3)
     .attr("id","curveRoss")
     .style("fill",'none')
@@ -71,15 +73,7 @@ g4.append("path")
     //.style("stroke",d=>color(d.i))
     .style("stroke-width","2px");
 
-const syncC = function(){
-    c = sliderC.value;
-    g4.select('#curveRoss').data([rossCurve(c)]).attr("d",line3);
-    console.log("suca")
-    displayC.innerHTML="\\(c = "+c+"\\)";
-    MathJax.typesetPromise([displayC]);//slow
-}
 
-sliderC.addEventListener("mousemove", syncC);
 
 
 g4.append("g")
@@ -90,3 +84,5 @@ g4.append("g")
 g4.append("g")
     .attr("transform", "translate(0,0)")
     .call(d3.axisLeft(y3));
+
+

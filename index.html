@@ -491,7 +491,8 @@
           \end{array}
         \right. 
       $$
-      This system contains only one non linear term
+      This system contains only one non linear term, for this example we are going to set \(a=b=0.2\) and change \(c\)
+      <dt-fn>The systemin order to be chaotic needs to be in 3 dimentions otherwise it can't cross itself</dt-fn>
     </p>
     <div style="position: relative; height:800px; left:-50px;">
       
@@ -505,9 +506,48 @@
           <div id="displayC" ><eqdin>\(c=3.4\) </eqdin></div>
         </div>
       </div>
-      
-      <script src='rossler.js'></script>
+      <script src='rossler.js'></script> 
+    </div>
+
+    <div style="position: relative; height:500px; left:-50px;">
+
+      <div style="position: relative; height:400px" id="rossler1D"></div>      
+      <div style="position:relative; width:300px; height: 50px; left:670px; top: -10px;">\(t\)</div> <!--xlabel-->
+      <div style="position:absolute; width:300px; height: 50px; left:70px; top: 0px;">\(x(t)\)</div> <!--xlabel-->
+      <script src='rossler1D.js'></script>
+    </div>
+    <div class="l-page side">
+      <a class="marker" href="#image-8" id="image-8">
+        <img src="images/lorentz.png" style='height: 100%; width: 100%; object-fit: contain'>
+      </a>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+        Figure 8: Relation between successive maximums for the Rossler map for \(c=5\) <dt-cite key="strogatz"></dt-cite>
+      </figcaption>
     </div> 
+    <div class="l-page side">
+      <a class="marker" href="#image-9" id="image-9">
+        <img src="images/lorentzbif.png" style='height: 100%; width: 100%; object-fit: contain'>
+      </a>
+      <figcaption style="align-self: center; margin-top: 20px; margin-bottom: 25px; width: 704px" >
+        Figure 9: Bifurcation diagram for the Rossler map <dt-cite key="strogatz"></dt-cite>
+      </figcaption>
+    </div> 
+    <p>
+      As you can see the way it behaves when changing \(c\) resembles the behavior of the logistic map. To compare these results to
+      those obtained with the logistic map we are going to compare successive local maxima of \(x(t)\), Then we plot
+      \(x_{max}(n+1)\) vs. \(x_{max}(n)\) where \(x_{max}(n)\) is the \(n\)-th maximum. This relation between successive maximums for
+      the rossler map closely resembles the logistic map, and that is what gives us this uncanny resemblance.
+      (figure <a href="#image-8">8</a>)
+    </p>
+    
+    <p>
+      By plotting all the maximums as \(c\) the bifurcation diagram shows up. Both the period doubling
+      route to chaos and the 3-period window in present. 
+    </p>
+    <p>
+      Unfortunately not all attractors have associated one-dimentional maps, to be able to have one they need to
+      be very flat, so while the theory applies to mildly chaotic systems, it does not apply to fully turbolent systems
+    </p>
 </dt-article>
 
 <dt-appendix>
