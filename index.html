@@ -358,6 +358,8 @@
       Feigenbaum's constant, but there is a much more efficent and general way to calculate it and to explain
       why it comes up the same in every generating function \(f\), and it's by using renormalization theory.
     </p>
+    <h3><a class="marker" href="#section-4.1" id="section-4.1">4.1</a> Finding \(\alpha\)</h3>
+
     <div class="l-page side">
       <a class="marker" href="#image-5" id="image-5">
         <img src="images/R_n.png" style='height: 100%; width: 100%; object-fit: contain'>
@@ -476,9 +478,87 @@
       By equating the coefficients up to the seventh order can be found \(c_2 \approx 1.5276\), \(c_4\approx 0.1048\)
       and \(\alpha\approx -2.5029\)
     </p>
+    <p>
+      If you want a more precise measurament of \(\alpha\) you can just consider higher and higher orders of the Taylor
+      expantion, using this theory also explains the value \(\delta\), but it uses much more complicated mathematical 
+      methods, so we are going to skip it, instead we are going to find an approximation of \(\delta\) but it isn't
+      in the form of a series.
+    </p>
+    <h3><a class="marker" href="#section-4.2" id="section-4.2">4.2</a> Finding \(\delta\)</h3>
+    <p>
+      Let \(f(x,\mu)\) be a unimodal map that undergoes the period-doubling route to chaos. We are going to define
+      the variables such that the 2-cycle is born when \(x=0\) and \(\mu=0\), and than we are going to taylor expand
+      around \(x=0\) 
+      <dt-fn>
+        The 0th order coefficient of the taylor expantion has to be zero because when \(\mu,x=0\)
+        \(x_{n+1}\) must be \(0\). The first order coefficient of the taylor expantion must be equal to \(-(1+\mu)\)
+        because when \(\mu=0\) we must have that \(|f'(x)=1|\)
+      </dt-fn>
+      \[
+        x_{n+1}=-(1+\mu)x_n + ax_n^2
+      \]
+      We can set \(a=1\) since it's equivalent to rescaling \(x\to x/a\), so in the end \[x_{n+1}=-(1+\mu)x_n + x_n^2\]
+    </p>
+    <p>
+      What we are goint to try to do is the following:
+      <ul>
+        <li>
+          For \(\mu>0\) there is a 2-cycle with fixed points \(x_{1,2}^*\) 
+        </li>
+        <li>
+          If we keep increasing \(\mu\), \(x_{1,2}^*\) will eventually period double giving rise to a 4-cycle
+        </li>
+        <li>
+          When this happens \(f^2\) will have the same algebraic structure near, say, \(x_1^*\) 
+        </li>
+        <li>
+          Try to renormalize \(f^2(x_1^*)\) into \(f(0)\) and see what it comes up
+        </li>
+      </ul>
+    </p>
+    <p>
+      So let's start by calculating \(f(x_{1,2}^*)\)
+      $$
+        \left\{ 
+          \begin{array}{c}
+          x_1^*=-(1+\mu)x_2^* + \big(x_2^*\big)^2\\ 
+          x_2^*=-(1+\mu)x_1^* + \big(x_1^*\big)^2
+          \end{array}
+        \right. 
+      $$
+      Solving the system we have that
+      \[
+        x_{1,2}^*=\frac{\mu\pm\sqrt{\mu^2+4\mu}}2
+      \]
+      Now we can take the first step for the renormalization: Traslating the origin, we are going to set in
+      \(x^*=x_1^*\)
+      <dt-fn>
+        We could have chosen \(x_2^*\) it doesn't matter
+      </dt-fn>
+      and let's see how \(x^*+\eta_{n+1}=f^2(x^*+\eta_n)\) behaves by expanding it up to the second order, and we get
+      \[
+        \eta_{n+1}= (1-4\mu-\mu^2)\eta_n + C\eta_n^2 + \dots
+        \qquad C= 4\mu +\mu^2 -3\sqrt{\mu^2+4\mu}
+      \]
+      To rescale \(\eta\) let \(\tilde x_n=C\eta_n\), and let \(\tilde\mu=4\mu-\mu^2\) then the equation above becomes
+      \[
+       \tilde x_{n+1}=-(1-\tilde\mu)\tilde x_n+ \tilde x_n^2+\dots
+      \]
+      This equation is very similar to the original, so
+      \[
+        f(x,\mu)\approx f^2(\tilde x, \tilde\mu)=f^2(x^*+ x/C,4\mu+\mu^2)
+      \]
+      remeber that \(x^*=\frac{\mu+\sqrt{\mu^2+4\mu}}2\) and \(C= 4\mu +\mu^2 -3\sqrt{\mu^2+4\mu}\)
+    </p>
+
+
+
+
 
   <h2><a class="marker" href="#section-5" id="section-5">5</a> The Logistic map in Real Life</h2>
-    <p>
+  <h3><a class="marker" href="#section-5.1" id="section-5.1">5.1</a> Link between differential equations and 1-D maps</h3>
+
+  <p>
       Most real life systems are way more complex than 1-D maps and most of the times evolve following differential
       equations, yet The bifurcation diagrams shows up in many situations. To see why let's look at The Rossler system
       witch is a set of three differential equations:
@@ -492,7 +572,7 @@
         \right. 
       $$
       This system contains only one non linear term, for this example we are going to set \(a=b=0.2\) and change \(c\)
-      <dt-fn>The systemin order to be chaotic needs to be in 3 dimentions otherwise it can't cross itself</dt-fn>
+      <dt-fn>The system in order to be chaotic needs to be in 3 dimentions otherwise it can't cross itself</dt-fn>
     </p>
     <div style="position: relative; height:800px; left:-50px;">
       
@@ -548,9 +628,17 @@
       Unfortunately not all attractors have associated one-dimentional maps, to be able to have one they need to
       be very flat, so while the theory applies to mildly chaotic systems, it does not apply to fully turbolent systems
     </p>
+
+  <h3><a class="marker" href="#section-5.2" id="section-5.2">5.2</a> Real life systems</h3>
+  
 </dt-article>
 
 <dt-appendix>
+  <h3>Acknowledgments</h3>
+  <p>
+    This page was written for the exam of Complex Systems held by professor Riccardo Mannella
+    at the University of Pisa
+  </p>
 </dt-appendix>
 
 <script type="text/bibliography">
