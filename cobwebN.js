@@ -6,6 +6,7 @@ var sliderN3 = document.getElementById("n_3");
 var displayR3 = document.getElementById("displayR3");
 var displayL3 = document.getElementById("displayL_3");
 var displayN3 = document.getElementById("displayN_3");
+var displayY3 = document.getElementById("yax");
 
 
 var len=70;
@@ -13,7 +14,9 @@ var l3=Math.pow(10,sliderL3.value);
 var n3=sliderN3.value;
 displayR3.innerHTML="\\(r = "+r+"\\)";
 displayL3.innerHTML="\\(l = "+l3.toPrecision(3)+"\\)";
-displayN3.innerHTML="\\(n = "+n3+"\\)";
+displayN3.innerHTML="\\(c = "+n3+"\\)";
+displayY3.innerHTML="\\(x_{n+"+n3+"}\\)";
+
 
 data2=curve(r,n3);
 web=cobweb(x_0,r,l3,n3);
@@ -88,8 +91,10 @@ const syncL3 = function(){
 
 const syncN3= function(){
     n3 =sliderN3.value;
-    displayN3.innerHTML="\\(n = "+n3+"\\)";
+    displayN3.innerHTML="\\(c = "+n3+"\\)";
+    displayY3.innerHTML="\\(x_{n+"+n3+"}\\)";
     MathJax.typesetPromise([displayN3]);//slow
+    MathJax.typesetPromise([displayY3]);//slow
     g3.select("#web3").data([cobweb(x_0,r,l3,n3)]).attr("d", line2);
     g3.select("#curve_3").data([curve(r,n3)]).attr("d",line2);
 }

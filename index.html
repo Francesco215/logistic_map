@@ -80,7 +80,7 @@
       <ul>
         <li>For \(r\le 1\quad x_n\to 0\). This can be explained by the fact that \(r< 1\) represents
         a declining population in model where \(x_{n+1}=rx_n\), and the factor \(1-x_n\) is always less than \(1\)</li>
-        <li>For \(1&lt r &lt r_1 \) where \(r_1\) is some constant we don't know anything about yet 
+        <li>For \(1&lt r &lt r_1 \), where \(r_1\) is some constant we don't know anything about yet, 
           the map converges to a single value</li>
         <li>
           For \(r_1&lt r &lt r_2 \) the tends to oscillate between 2 values
@@ -93,7 +93,7 @@
         </li>
         <li>
           After that it becomes harder and harder to see if the periods keep doubling because the constants \(r_n\)
-          keep getting closer togheder, so it seems that they converge to some constant \(r_\infty\)
+          keep getting closer together, so it seems that they converge to some constant \(r_\infty\)
         </li>
         <li>
           After that, the way the system behaves is chaotic, with a "island" of stability 3
@@ -162,7 +162,7 @@
     <p>
       The same goes for another constant that emerges in the bifurcation diagram of unidimentional maps. Let
       \(f(x_{n+1})=f(x_n)\) be a generic map with maximum in \(x_m\), then let \(R_n\) be the intersection 
-      between the bifurcation diagram and \(x=x_m\), and let \(d_n\) be the width of the pitchfork an \(R_n\), than
+      between the bifurcation diagram and \(x=x_m\), and let \(d_n\) be the width of the pitchfork at \(R_n\), then
       \[
         \alpha=\lim_{n\to\infty}\frac{d_n}{d_{n+1}}=2.5029\dots
       \]
@@ -292,7 +292,11 @@
       
       <div style="position: relative; height:640px" id="cobwebN"></div>      
       <div style="position:relative; width:300px; height: 50px; left:670px; top: -10px;">\(x_n\)</div> <!--xlabel-->
-      <div style="position:absolute; width:300px; height: 50px; left:70px; top: 0px;">\(x_{n+1}\)</div> <!--ylabel-->
+      <div id="yax" style="position:absolute; width:300px; height: 50px; left:70px; top: 0px;">
+        <eqdin>
+          \(x_{n+1}\)
+        </eqdin>
+      </div> <!--ylabel-->
       
       <div style="position:relative; width:800px; height: 50px; left:75px; top: -10px;">      
         <div style="position:absolute; width:300px; height: 50px; left:0px;">
@@ -305,7 +309,7 @@
         </div>
         <div style="position:absolute; width:300px; height: 50px; left:400px;">
           <input type="range" min="1" max="10" step="1" value="2" id="n_3">
-          <div id="displayN_3"><eqdin>\(l = 10\)</eqdin></div>
+          <div id="displayN_3"><eqdin>\(c = 2\)</eqdin></div>
         </div>
       </div>
       
@@ -488,12 +492,13 @@
     <p>
       Let \(f(x,\mu)\) be a unimodal map that undergoes the period-doubling route to chaos. We are going to define
       the variables such that the 2-cycle is born when \(x=0\) and \(\mu=0\), and than we are going to taylor expand
-      around \(x=0\) 
+      around \(x=0\).
       <dt-fn>
         The 0th order coefficient of the taylor expantion has to be zero because when \(\mu,x=0\)
         \(x_{n+1}\) must be \(0\). The first order coefficient of the taylor expantion must be equal to \(-(1+\mu)\)
-        because when \(\mu=0\) we must have that \(|f'(x)=1|\)
+        because when \(\mu=0\) we must have that \(|f'(x)=1|\).
       </dt-fn>
+      We are going to neglet all higher order of \(x\) and \(\mu\), and that's why our results will be approximate.
       \[
         x_{n+1}=-(1+\mu)x_n + ax_n^2
       \]
@@ -540,23 +545,62 @@
         \eta_{n+1}= (1-4\mu-\mu^2)\eta_n + C\eta_n^2 + \dots
         \qquad C= 4\mu +\mu^2 -3\sqrt{\mu^2+4\mu}
       \]
-      To rescale \(\eta\) let \(\tilde x_n=C\eta_n\), and let \(\tilde\mu=4\mu-\mu^2\) then the equation above becomes
+      To rescale \(\eta\) let \(\tilde x_n=C\eta_n\), and let \(\tilde\mu=4\mu-\mu^2-2\) then the equation above becomes
       \[
        \tilde x_{n+1}=-(1-\tilde\mu)\tilde x_n+ \tilde x_n^2+\dots
       \]
       This equation is very similar to the original, so
       \[
-        f(x,\mu)\approx f^2(\tilde x, \tilde\mu)=f^2(x^*+ x/C,4\mu+\mu^2)
+        f(x,\mu)\approx f^2(\tilde x, \tilde\mu)=f^2(x^*+ x/C,4\mu+\mu^2-2)
       \]
       remeber that \(x^*=\frac{\mu+\sqrt{\mu^2+4\mu}}2\) and \(C= 4\mu +\mu^2 -3\sqrt{\mu^2+4\mu}\)
+    </p>
+    <p>
+      Because of the fact that the system has the same structure when \(\tilde\mu=\mu\) the system undergoes a bifurcation. It is possible to estimate it in terms of \(\mu\)
+      by solving \(4\mu_2+\mu_2^2-2=\mu=0\) we get the solution \(\mu_2=-2+\sqrt 6\)
+      <dt-fn>
+        I called it \(\mu_2\) because this represents the moment where the bifurcation happends for the second time,
+        from now on i will use this notation, consequently, \(\mu_1=\mu\) and \(\tilde\mu_1=\tilde\mu\)
+      </dt-fn>
+
+    </p>
+    <p>
+      As before it is possible to renormalize further by linking
+      \[
+        f^{2^n}(x,\mu_n)\approx f^{2^{n+1}}(\tilde x,\tilde\mu_n)
+      \]
+      and now the way you find \(\mu_{n+1}\) is by setting \(\tilde\mu_n=\mu_n\)
+      \[
+        \mu_n=4\mu_{n+1}+\mu_{n+1}^2 -2 
+      \]so
+      \[\mu_{n+1}=-2\sqrt{6+\mu_{n}}\]
+      And at the onset of chaos we have that
+      \[
+        \mu_\infty=4\mu_\infty+\mu_\infty^2-2\quad \rightarrow\quad \mu_\infty=\big(\sqrt{17}-3\big)/2\approx 0.56
+      \]
+      For the logistic map this give us a pretty good estimation of \(r_\infty\), all we have to do is
+      add 3 to the result. With out method \(r_\infty\approx 3.56\), while the exact result is \(r_\infty= 3.57\dots\)
+    </p>
+    <p>
+      Now the thing we all have been waiting for: The estimation of \(\delta\)
+    </p>
+    <p>
+      For \(n\gg 1\) \(\mu_n\) should converge geometrically to \(\mu_\infty\), so we have that
+      \[
+        \delta=\lim_{n\to\infty}\frac{\mu_{n}-\mu_\infty}{\mu_{n+1}-\mu_\infty}
+      \] 
+      Since this tends to \(0/0\) we can use de l'Hopital's rule
+      \[
+        \delta=\frac{d\mu_{n}}{d\mu_{n+1}}\bigg|_{\mu_{n+1}=\mu_\infty}=2\mu_\infty+4\approx 5.12
+      \]
+      It's off by 10% the true value of \(\delta=4.67\dots\)
     </p>
 
 
 
 
 
-  <h2><a class="marker" href="#section-5" id="section-5">5</a> The Logistic map in Real Life</h2>
-  <h3><a class="marker" href="#section-5.1" id="section-5.1">5.1</a> Link between differential equations and 1-D maps</h3>
+  <h2><a class="marker" href="#section-5" id="section-5">5</a> The Logistic map for differential equations</h2>
 
   <p>
       Most real life systems are way more complex than 1-D maps and most of the times evolve following differential
@@ -582,7 +626,7 @@
       
       <div style="position:relative; width:800px; height: 50px; left:75px; top: -10px;">      
         <div style="position:absolute; width:300px; height: 50px; left:0px;">
-          <input type="range" min="0" max="10" step="0.01" value="3.4" id="c">
+          <input type="range" min="1.2" max="10" step="0.01" value="3.4" id="c">
           <div id="displayC" ><eqdin>\(c=3.4\) </eqdin></div>
         </div>
       </div>
@@ -629,8 +673,30 @@
       be very flat, so while the theory applies to mildly chaotic systems, it does not apply to fully turbolent systems
     </p>
 
-  <h3><a class="marker" href="#section-5.2" id="section-5.2">5.2</a> Real life systems</h3>
-  
+  <h2><a class="marker" href="#section-6" id="section-6">6</a> Applications in Real Life</h2>
+    <p>
+      This part will be treated as a Further reading section because I didn't had the time to go in detail in 
+      Real life application, what i can say is tt has been show that:
+      <ul>
+        <li>
+          The water dripping from a faucet undergoes the period doubling route to chaos as
+          the flux increases <dt-cite key="dripping"></dt-cite>
+        </li>
+        <li>
+          Fibrillating hearts <dt-fn>A heart is fibrillating when it beats irregurally, if untreated it leads to death</dt-fn>
+          become so via the the period doubling route to chaos <dt-cite key="rabbit1"></dt-cite>, and scientists used the knowledge
+          from the logistic regression to control chaos in a fibrillating heart and lead it to beat normally again
+          <dt-cite key="rabbit2"></dt-cite>
+        </li>
+        <li>
+          Covection of the liquid mercury in a box with a thermal difference between the top and the bottom
+          undergoes the period doubling route to chaos as the thermal difference from the top and the bottom increases
+          <dt-cite key="mercury"></dt-cite>
+        </li>
+
+      </ul>
+
+    </p>
 </dt-article>
 
 <dt-appendix>
@@ -669,5 +735,33 @@
     journal={Communications in Mathematical Physics},
     year={1980},
     url={https://link.springer.com/article/10.1007/BF01205039}
+  }
+  @article{rabbit1,
+    title={Low dimensional chaos in cardiac tissue},
+    author={Dante R. Chialvo, Robert F. Gilmour Jr, Jose Jalife },
+    journal={Nature},
+    year={1989},
+    url={https://www.nature.com/articles/343653a0}
+  }
+  @article{rabbit2,
+    title={Controlling Cardiac Chaos},
+    author={Alan Garfinkel, Mark L. Spano, William L. Ditto, James N. Weiss},
+    journal={Science},
+    year={1992},
+    url={https://www.nature.com/articles/343653a0}
+  }
+  @article{dripping,
+    title={The dripping Faucet as a Model Chaotic System},
+    author={Robert Shaw},
+    journal={Science},
+    year={1984},
+    url={https://archive.org/details/ShawRobertDrippingFaucetAsAModelChaoticSystem1984_201811}
+  }
+  @article{mercury,
+    title={Period doubling cascade in mercury, a quantitative measurement},
+    author={A. Libchaber, C. Laroche, S. Fauve},
+    journal={J. Physique Let},
+    year={1982},
+    url={https://jphyslet.journaldephysique.org/articles/jphyslet/abs/1982/07/jphyslet_1982__43_7_211_0/jphyslet_1982__43_7_211_0.html}
   }
 </script>
