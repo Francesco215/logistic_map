@@ -31,8 +31,7 @@ const syncC = function(){
     data=rossCurve(c);
     g4.select('#curveRoss').data([data.slice(sl/dT,-1)]).attr("d",line3);
     g5.select('#curveRoss1D').data([data]).attr("d",line4);
-    displayC.innerHTML="\\(c = "+c+"\\)";
-    MathJax.typesetPromise([displayC]);//slow
+    displayC.innerHTML="c = "+c;
 }
 
 sliderC.addEventListener("mousemove", syncC);

@@ -3,7 +3,7 @@ var sliderC = document.getElementById("c");
 var displayC = document.getElementById("displayC");
 
 var c=sliderC.value;
-displayC.innerHTML="\\(c = "+c+"\\)";
+displayC.innerHTML="c = "+c;
 
 
 // set the dimensions and margins of the graph

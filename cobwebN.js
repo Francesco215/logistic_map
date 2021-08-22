@@ -12,9 +12,9 @@ var displayY3 = document.getElementById("yax");
 var len=70;
 var l3=Math.pow(10,sliderL3.value);
 var n3=sliderN3.value;
-displayR3.innerHTML="\\(r = "+r+"\\)";
-displayL3.innerHTML="\\(l = "+l3.toPrecision(3)+"\\)";
-displayN3.innerHTML="\\(c = "+n3+"\\)";
+displayR3.innerHTML="r = "+r;
+displayL3.innerHTML="l = "+l3.toPrecision(3);
+displayN3.innerHTML="c = "+n3;
 displayY3.innerHTML="\\(x_{n+"+n3+"}\\)";
 
 
@@ -78,30 +78,27 @@ const syncR3 = function(){
     r = sliderR3.value;
     g3.select('#curve_3').data([curve(r,n3)]).attr("d",line2);
     g3.select('#web3').data([cobweb(x_0,r,l3,n3)]).attr("d",line2);
-    displayR3.innerHTML="\\(r = "+r+"\\)";
-    MathJax.typesetPromise([displayR3]);//slow
+    displayR3.innerHTML="r = "+r;
 }
 
 const syncL3 = function(){
     l3 =Math.pow(10 ,sliderL3.value);
-    displayL3.innerHTML="\\(l = "+l3.toPrecision(3)+"\\)";
-    MathJax.typesetPromise([displayL3]);//slow
+    displayL3.innerHTML="l = "+l3.toPrecision(3);
     g3.select("#web3").data([cobweb(x_0,r,l3,n3)]).attr("d", line2);
 }
 
 const syncN3= function(){
     n3 =sliderN3.value;
-    displayN3.innerHTML="\\(c = "+n3+"\\)";
+    displayN3.innerHTML="c = "+n3;
     displayY3.innerHTML="\\(x_{n+"+n3+"}\\)";
-    MathJax.typesetPromise([displayN3]);//slow
     MathJax.typesetPromise([displayY3]);//slow
     g3.select("#web3").data([cobweb(x_0,r,l3,n3)]).attr("d", line2);
     g3.select("#curve_3").data([curve(r,n3)]).attr("d",line2);
 }
 
-sliderR3.addEventListener("mousemove", syncR3);
-sliderL3.addEventListener("mousemove",syncL3);
-sliderN3.addEventListener("mousemove",syncN3);
+sliderR3.addEventListener("input", syncR3);
+sliderL3.addEventListener("input",syncL3);
+sliderN3.addEventListener("input",syncN3);
 
 
 

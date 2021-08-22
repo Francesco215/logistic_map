@@ -4,7 +4,7 @@ var displayR0 = document.getElementById("displayR0");
 
 var len=70;
 r=sliderR0.value;
-displayR0.innerHTML="\\(r = "+r+"\\)";
+displayR0.innerHTML="r = "+r;
 
 data0=curve(r);
 
@@ -41,17 +41,27 @@ g0.append("path")
     .style("stroke",'#ff7300')
     .style("stroke-width","3px");
 
+/*
+vecchia versione del codice, funzionava solo con firefox.
+Però era bella perchè aveva le cose formattate per benino
 
 const syncR0 = function(){
-    r = sliderR0.value;
+    r = this.value;
+    console.log(r);
     g0.select("#curve").data([curve(r)]).attr("d", line0);    
     displayR0.innerHTML="\\(r = "+r+"\\)";
     MathJax.typesetPromise([displayR0]);//slow
 }
 
-sliderR0.addEventListener("mousemove", syncR0)
+*/
 
+const syncR0 = function(){
+    r = this.value;
+    g0.select("#curve").data([curve(r)]).attr("d", line0); 
+    displayR0.innerHTML="r = "+r;   
+}
 
+sliderR0.addEventListener("input", syncR0)
 
 g0.append("g")
     .attr("id","xaxis0")

@@ -6,8 +6,8 @@ var displayL2 = document.getElementById("displayL_2");
 
 var len=70;
 var l2=Math.pow(10,sliderL2.value);
-displayR2.innerHTML="\\(r = "+r+"\\)";
-displayL2.innerHTML="\\(l = "+l2.toPrecision(3)+"\\)";
+displayR2.innerHTML="r = "+r;
+displayL2.innerHTML="l = "+l2.toPrecision(3);
 
 data2=curve(r);
 web=cobweb(x_0,r,l2);
@@ -91,21 +91,19 @@ const syncR2 = function(){
     r = sliderR2.value;
     g2.select("#curve_2").data([curve(r)]).attr("d", line2);
     g2.select("#web").data([cobweb(x_0,r,l2)]).attr("d", line2);
-    displayR2.innerHTML="\\(r = "+r+"\\)";
-    MathJax.typesetPromise([displayR2]);//slow
+    displayR2.innerHTML="r = "+r;
 }
 
 const syncL2 = function(){
     l2 =Math.pow(10 ,sliderL2.value);
-    displayL2.innerHTML="\\(l = "+l2.toPrecision(3)+"\\)";
+    displayL2.innerHTML="l = "+l2.toPrecision(3);
     web=cobweb(x_0,r,l2);
-    MathJax.typesetPromise([displayL2]);//slow
     g2.select("#web").data([web]).attr("d", line2);
 }
 
 
-sliderR2.addEventListener("mousemove", syncR2)
-sliderL2.addEventListener("mousemove",syncL2)
+sliderR2.addEventListener("input", syncR2)
+sliderL2.addEventListener("input",syncL2)
 
 
 

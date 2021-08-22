@@ -20,8 +20,10 @@ const updateR = (r) =>{
     display=[displayR0,displayR1,displayR2,displayR3];
     slider=[sliderR0,sliderR1,sliderR2,sliderR3];
     for(i=0;i<4;i++){
+        /* old
         display[i].innerHTML="\\(r = "+r+"\\)";
-        MathJax.typesetPromise([display[i]]);//slow
+        MathJax.typesetPromise([display[i]]);//slow */
+        display[i].innerHTML="r = "+r;
         slider[i].value=r;
     }
     g0.select("#curve").data([curve(r)]).attr("d", line0);

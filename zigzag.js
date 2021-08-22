@@ -10,7 +10,7 @@ var sequence = (x,r,len) =>{
 // parte dello slider
 var sliderR1 = document.getElementById("r1");
 var len=70;
-displayR1.innerHTML="\\(r = "+r+"\\)";
+displayR1.innerHTML="r = "+r;
 
 
 data=sequence(x_0,r,len);
@@ -75,11 +75,10 @@ drag2(g1.selectAll("#dragx_1"));
 const syncR = function(){
     r = sliderR1.value;
     g1.select("#zigzag").data([sequence(x_0,r,len)]).attr("d", line);
-    displayR1.innerHTML=="\\(r = "+r+"\\)";
-    MathJax.typesetPromise([displayR1]);//slow
+    displayR1.innerHTML=="r = "+r;
     }
 
-sliderR1.addEventListener("mousemove", syncR)
+sliderR1.addEventListener("input", syncR)
 
 g1.append("g")
     .attr("transform", "translate(0," + height + ")")
