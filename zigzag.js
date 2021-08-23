@@ -63,6 +63,9 @@ g1.append("circle")
     .attr("r",7.5)
     .attr("id","dragx_1")
     .style("fill",'#ff7300')
+    .onEventListener("mouseover",function(){
+        this.style.cursor='all-scroll'
+    });
 
 var drag2=d3.drag()
     .on("drag", function(){
